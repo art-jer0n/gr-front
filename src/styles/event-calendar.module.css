@@ -1,0 +1,40 @@
+@import url('./variables.module.css');
+
+.calendar {
+  width: 100% !important;
+  height: 100%;
+  user-select: none;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cell {
+  user-select: none;
+  position: relative;
+  text-align: center;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+

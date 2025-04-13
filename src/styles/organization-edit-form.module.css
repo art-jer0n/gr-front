@@ -1,0 +1,151 @@
+@import url('./variables.module.css');
+
+.container {
+  padding: 0;
+  margin: 0 auto;
+  width: var(--page-content-width);
+}
+
+.toolbar {
+  height: var(--page-toolbar-height);
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem 0;
+  gap: 0 1rem;
+  user-select: none;
+}
+
+.dropdown { 
+  min-width: 160px;
+  width: 15vw;
+}
+
+.button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: inline-block;
+}
+
+.forms {
+  height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  max-height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  margin: 0 auto;
+  padding: 0;
+  overflow: auto;
+}
+
+.card {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 1px solid #ced4da;
+}
+
+.card :global(.p-card-header) {
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 0 0 1rem;
+  user-select: none;
+}
+
+.card :global(.p-card-footer) {
+  padding: 0;
+  margin: 0;
+}
+
+.card :global(.p-card-content) {
+  padding: 1rem;
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card :global(.p-card-body) {
+  padding: 1rem 0;
+  margin: 0;
+}
+
+.block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.block h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.images {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.image img {
+  width: 100%;
+  border: 1px solid #ced4da;
+  border-radius: var(--border-radius);
+  object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.item {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+}
+
+.left_column {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right_column {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.error_input {
+  border: 1px solid red !important;
+}
+
+.error_text {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.url_text {
+  max-width: 55%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

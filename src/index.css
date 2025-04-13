@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--gray-100);
+  font-family: var(--font-family); 
+  overflow: hidden;
+}
+
+/* Стилизация плашки с ошибкой. */
+.Toastify__toast--error {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  width: 400px;
+}
+
+.Toastify__progress-bar--error {
+  background: var(--primary-color);
+}
+
+
+
+
+

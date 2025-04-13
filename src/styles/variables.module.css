@@ -1,0 +1,8 @@
+:root {
+  --page-header-height: 120px;
+  --page-toolbar-height: 72px;
+  --page-footer-height: 0px;
+  --page-content-height: calc(100vh - var(--page-header-height) - var(--page-footer-height));
+  --page-content-width: 70%;
+  --page-content-min-width: 900px
+}

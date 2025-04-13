@@ -1,0 +1,109 @@
+@import url('./variables.module.css');
+
+.container {
+  padding: 0;
+  margin: 0;
+}
+
+.toolbar {
+  width: var(--page-content-width);
+  height: var(--page-toolbar-height);
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem 0;
+  gap: 1rem;
+  user-select: none;
+}
+
+.view {
+  width: var(--page-content-width);
+  height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  max-height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden auto;
+}
+
+.view :global(.p-dataview-content) {
+  background: none;
+}
+
+.view :global(.p-dataview-emptymessage) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+  justify-content: center;
+  gap: 15px;
+  padding: 0.5rem 0 0;
+}
+
+.card {
+  width: 250px;
+  height: 200px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 1px solid #ced4da;
+}
+
+.card :global(.p-card-header) {
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 0 0;
+  user-select: none;
+}
+
+.card :global(.p-card-footer) {
+  padding: 0;
+  margin: 0;
+}
+
+.card :global(.p-card-content) {
+  padding: 0;
+  margin: 0;
+  height: 180px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card :global(.p-card-body) {
+  padding: 0;
+  margin: 0;
+  height: 180px;
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: 1px solid var(--primary-color);
+}
+
+.card:hover :global(.p-card-header) {
+  color: var(--primary-color);
+}
+
+.flag {
+  width: 200px;
+  height: 100px;
+  border: 1px solid #ced4da;
+  border-radius: var(--border-radius);
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
+}

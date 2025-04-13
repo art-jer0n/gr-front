@@ -1,0 +1,18 @@
+.dev_container {
+  position: absolute;
+  bottom: 50vh;
+  left: 45vw;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color)
+}
+
+.loading_container {
+  position: absolute;
+  bottom: 50vh;
+  left: 45vw;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color)
+}
+

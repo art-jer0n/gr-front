@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "es6", // Компиляция в ECMAScript 5 для широкой совместимости
+    "rootDirs": ["src"], // Исходные файлы находятся в директории "src"
+    "outDir": "build", // Скомпилированные файлы будут помещены в директорию "build"
+    "lib": ["dom", "esnext"], // Включение библиотек DOM и ESNext
+    "typeRoots": ["node_modules/@types", "src/types"], // Папки с типами: стандартные и локальные
+    "allowJs": true, // Разрешение на компиляцию JavaScript файлов
+    "skipLibCheck": true, // Пропуск проверки типов в библиотеках для ускорения компиляции
+    "esModuleInterop": true, // Включение совместимости с модулями ES
+    "allowSyntheticDefaultImports": true, // Разрешение на импорт без указания default
+    "strict": true, // Включение всех строгих проверок типов
+    "forceConsistentCasingInFileNames": true, // Принудительное соблюдение регистра в именах файлов
+    "noFallthroughCasesInSwitch": true, // Запрещает падение через case в switch
+    "module": "esnext", // Использование модулей ESNext
+    "moduleResolution": "node", // Стратегия разрешения модулей как в Node.js
+    "resolveJsonModule": true, // Разрешение на импорт JSON файлов
+    "isolatedModules": true, // Требование к каждому файлу быть модулем
+    "noImplicitAny": true, // Запрещает неявное использование типа "any"
+    "noImplicitThis": true, // Запрещает неявное использование "this" с типом "any"
+    "noUnusedLocals": true, // Сообщает об ошибках при наличии неиспользуемых локальных переменных
+    "noUnusedParameters": true, // Сообщает об ошибках при наличии неиспользуемых параметров
+    "noEmit": true, // Отключение генерации выходных файлов
+    "jsx": "react", // Использование JSX трансформера для React
+    "removeComments": true, // Удаление комментариев из скомпилированного кода
+    "sourceMap": true, // Генерация карт исходного кода для отладки
+    "strictNullChecks": true, // Включение строгой проверки на null и undefined
+    "incremental": true, // Включение инкрементальной компиляции для ускорения сборки
+    "baseUrl": "./src",  // Указываем, что все пути начинаются с папки src
+    "paths": {
+      "*": ["*"] // Это добавит возможность использовать относительные пути внутри src
+    },
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules" // Плагин для поддержки CSS-модулей
+      }
+    ]
+  },
+  "include": ["src/**/*"], // Включение всех файлов в директории "src"
+  "exclude": [
+    "node_modules", // Исключение директории "node_modules"
+    "build", // Исключение директории "build"
+    "*.config.js", // Исключение всех файлов с расширением ".config.js"
+    "**/*.test.ts*" // Исключение всех тестовых файлов TypeScript
+  ]
+}
