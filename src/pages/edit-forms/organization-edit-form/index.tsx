@@ -122,7 +122,7 @@ const OrganizationEditForm: React.FC = () => {
     });
 
     if (id === "new") {
-      navigate(`/organization-edit-form/${organizationId}`);
+      navigate(`/organization/edit/${organizationId}`);
     }
   };
 

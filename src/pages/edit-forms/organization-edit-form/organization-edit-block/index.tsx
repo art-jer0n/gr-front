@@ -4,7 +4,7 @@ import { FileUpload, FileUploadSelectEvent } from "primereact/fileupload";
 import { FloatLabel } from "primereact/floatlabel";
 import { Image } from "primereact/image";
 import { InputText } from "primereact/inputtext";
-import { OrganizationEditBlockProps } from "./organization-form-props";
+import { OrganizationEditBlockProps } from "./organization-edit-block-props";
 import * as styles from "styles/organization-edit-form.module.css";
 import { Organization } from "interfaces/organization";
 

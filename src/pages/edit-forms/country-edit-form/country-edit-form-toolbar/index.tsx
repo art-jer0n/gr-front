@@ -1,12 +1,12 @@
 import React from "react";
 import { Button } from "primereact/button";
-import { CountryFormToolbarProps } from "./edit-form-toolbar-props";
+import { CountryEditFormToolbarProps } from "./country-edit-form-toolbar-props";
 import * as styles from "styles/country-edit-form.module.css";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { SelectItemOptionsType } from "primereact/selectitem";
 import { EMPTY_MESSAGE } from "app-consts";
 
-const CountryEditFormToolbar: React.FC<CountryFormToolbarProps> = ({
+const CountryEditFormToolbar: React.FC<CountryEditFormToolbarProps> = ({
   countryId,
   countries,
   handleCountryId,

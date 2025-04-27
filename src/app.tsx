@@ -1,12 +1,14 @@
-import React, { Suspense, lazy, useContext, useEffect } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { PageContext, PageProvider } from "./page-context";
+import { PageProvider } from "./page-context";
 import { ToastContainer } from "react-toastify";
 import { addLocale } from "primereact/api";
-import { COUNTRIES, ORGANIZATIONS, EMBASSIES, LOCALE_RU } from "./app-consts";
+import { COUNTRIES, ORGANIZATIONS, EMBASSIES, LOCALE_RU, NEWS, EVENTS } from "./app-consts";
 import { getCountries, saveCountries } from "./services/country-service";
 import { getEmbassies, saveEmbassies } from "./services/embassy-service";
 import { getOrganizations, saveOrganizations } from "./services/organization-service";
+import { getNews, saveNews } from "services/news-service";
+import { getEvents, saveEvents } from "services/calendar-event-service";
 
 const PageFooter = lazy(() => import("./components/page-footer"));
 const PageHeader = lazy(() => import("./components/page-header"));
@@ -17,6 +19,8 @@ const EmbassyList = lazy(() => import("./pages/embassy-list"));
 const CountryEditForm = lazy(() => import("./pages/edit-forms/country-edit-form"));
 const Organization = lazy(() => import("./pages/organization"));
 const OrganizationEditForm = lazy(() => import("./pages/edit-forms/organization-edit-form"));
+const MainEditForm = lazy(() => import("./pages/edit-forms/main-edit-form"));
+
 
 import "react-toastify/dist/ReactToastify.css";
 import "primereact/resources/themes/saga-orange/theme.css";
@@ -25,13 +29,9 @@ import "primeicons/primeicons.css";
 import "./App.css";
 
 
+
+
 const DevPage: React.FC = () => {
-  // const { setTitle } = useContext(PageContext);
-
-  // useEffect(() => {
-  //   setTitle("...")
-  // }, []);
-
   return (
     <div className="dev_container">
       Страница находится в разработке...
@@ -40,12 +40,6 @@ const DevPage: React.FC = () => {
 };
 
 const LoadingPage: React.FC = () => {
-  // const { setTitle } = useContext(PageContext);
-
-  // useEffect(() => {
-  //   setTitle("...")
-  // }, []);
-
   return (
     <div className="loading_container">
       Загрузка...
@@ -64,17 +58,11 @@ const Layout: React.FC = () => (
 
 const App: React.FC = () => {
   useEffect(() => {
-    if (!getCountries().length) {
-      saveCountries(COUNTRIES);
-    }
-    if (!getEmbassies().length) {
-      saveEmbassies(EMBASSIES);
-    }
-
-    if (!getOrganizations().length) {
-      saveOrganizations(ORGANIZATIONS);
-    }
-
+    if (!getCountries().length) saveCountries(COUNTRIES);
+    if (!getEmbassies().length) saveEmbassies(EMBASSIES);
+    if (!getOrganizations().length) saveOrganizations(ORGANIZATIONS);
+    if (!getNews().length) saveNews(NEWS);
+    if (!getEvents().length) saveEvents(EVENTS);
     addLocale("ru", LOCALE_RU);
   }, []);
 
@@ -87,6 +75,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
+              <Route path="edit" element={<MainEditForm />} />
               <Route path="country" element={<Outlet />}>
                 <Route index element={<CountryList />} />
                 <Route path=":id" element={<EmbassyList />} />

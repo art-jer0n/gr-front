@@ -47,24 +47,24 @@
   flex-direction: column;
 }
 
-.pdf_viewer_panel :global(.p-panel-header) {
+.pdf_viewer_panel  [class~='p-panel-header']{
   position: sticky;
   top: 0;
   z-index: 10;
   height: 8%;
 }
 
-.pdf_viewer_panel :global(.p-panel-title) {
+.pdf_viewer_panel  [class~='p-panel-title']{
   user-select: none;
 }
 
-.pdf_viewer_panel :global(.p-toggleable-content) {
+.pdf_viewer_panel  [class~='p-toggleable-content']{
   margin: 0;
   padding: 0;
   height: 92%;
 }
 
-.pdf_viewer_panel :global(.p-panel-content) {
+.pdf_viewer_panel [class~='p-panel-content']{
   margin: 0;
   padding: 0;
   height: 100%;

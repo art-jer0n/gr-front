@@ -1,6 +1,6 @@
 import { Country } from "interfaces/country";
 
-export interface CountryFormToolbarProps {
+export interface CountryEditFormToolbarProps {
   onSave: () => void
   onCancel: () => void
   onDelete: () => void

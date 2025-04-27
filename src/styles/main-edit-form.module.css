@@ -1,0 +1,125 @@
+@import url('./variables.module.css');
+
+.container {
+  padding: 0;
+  margin: 0 auto;
+  width: var(--page-content-width);
+}
+
+.toolbar {
+  height: var(--page-toolbar-height);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem 0;
+  gap: 0 1rem;
+  user-select: none;
+}
+
+.button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  display: inline-block;
+}
+
+.table {
+  border: 1px solid var(--surface-border);
+  width: 100%;
+}
+
+.table [class~='p-datatable-wrapper'] {
+  background: rgb(255 255 255 / 70%);
+  height: 450px;
+  overflow: auto;
+}
+
+.table [class~='p-component-overlay'] {
+  background: rgb(255 255 255 / 70%);
+}
+
+.table [class~='p-datatable-header'] {
+  padding: 0;
+  background: var(--surface-section);
+  user-select: none;
+}
+
+.table_body {
+  font-size: 1rem;
+  padding: 10px;
+  user-select: none;
+}
+
+.table_header {
+  font-size: 1rem;
+  padding: 10px;
+  user-select: none;
+}
+
+.paginator [class~='p-paginator-page'] {
+  min-width: 2.357rem;
+}
+
+.dialog_header { }
+
+.dialog_footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.form {
+  padding: 2rem 0 0;
+}
+
+.field {
+  margin: 0 0 2.5rem;
+}
+
+.field label {
+  z-index: 1000;
+}
+
+.calendar_panel {
+  width: 400px !important;
+  min-width: 400px !important;
+  max-width: 400px !important;
+}
+
+.card_header_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.card_header_text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color)
+}
+
+.card_header_button_container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card_header_button {}
+
+.forms {
+  height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  max-height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  margin: 0 0 2rem;
+  padding: 0;
+  gap: 1rem;
+  overflow: hidden auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

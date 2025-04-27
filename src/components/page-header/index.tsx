@@ -31,6 +31,13 @@ const PageHeader: React.FC = () => {
       disabled: true
     },
     {
+      label: "Форма редактирования",
+      icon: "pi pi-pencil",
+      command: () => {
+        navigate(`/edit`);
+      },
+    },
+    {
       label: "Форма редактирования посольств",
       icon: "pi pi-pencil",
       command: () => {
