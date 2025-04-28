@@ -2,32 +2,30 @@
 
 .container {
   padding: 0;
-  margin: 0;
-}
-
-.toolbar {
-  width: var(--page-content-width);
-  height: var(--page-toolbar-height);
-  display: flex;
-  justify-content: end;
-  align-items: center;
   margin: 0 auto;
-  padding: 1rem 0;
-  gap: 1rem;
+  width: var(--page-content-width);
+  min-width: var(--page-content-min-width);
   user-select: none;
 }
 
-.button {
-  min-width: 200px;
+.toolbar {
+  padding: 1rem 0;
+  margin: 0 auto;
+  gap: 1rem;
+  background: var(--gray-100);
+  height: var(--page-toolbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  user-select: none;
+  z-index: 100;
+  top: 0;
 }
 
 .view {
-  width: var(--page-content-width);
-  height: calc(var(--page-content-height) - var(--page-toolbar-height));
-  max-height: calc(var(--page-content-height) - var(--page-toolbar-height));
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
-  overflow: auto;
 }
 
 .view   [class~='p-dataview-content'] {
@@ -105,11 +103,6 @@
 .logo {
   width: 390px;
   height: 230px;
-
-  /* border: 1px solid #ced4da; */
-
-  /* border-radius: var(--border-radius); */
-
   object-fit: contain;
   -webkit-user-drag: none;
   user-select: none;

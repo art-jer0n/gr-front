@@ -2,28 +2,25 @@
 
 .container {
   padding: 0;
-  margin: 0;
-}
-
-.toolbar {
-  width: var(--page-content-width);
-  height: var(--page-toolbar-height);
-  display: flex;
-  justify-content: end;
-  align-items: center;
   margin: 0 auto;
-  padding: 1rem 0;
-  gap: 1rem;
+  width: var(--page-content-width);
+  min-width: var(--page-content-min-width);
   user-select: none;
 }
 
-.view {
-  width: var(--page-content-width);
-  height: calc(var(--page-content-height) - var(--page-toolbar-height));
-  max-height: calc(var(--page-content-height) - var(--page-toolbar-height));
+.toolbar {
+  padding: 1rem 0;
   margin: 0 auto;
-  padding: 0;
-  overflow: hidden auto;
+  gap: 1rem;
+  background: var(--gray-100);
+  height: var(--page-toolbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  user-select: none;
+  z-index: 100;
+  top: 0;
 }
 
 .view  [class~='p-dataview-content'] {
@@ -34,23 +31,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  user-select: none;
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
+  grid-template-columns: repeat(auto-fit, minmax(255px, 255px));
   justify-content: center;
   gap: 15px;
   padding: 0.5rem 0 0;
 }
 
 .card {
-  width: 250px;
+  width: 255px;
   height: 200px;
   cursor: pointer;
   transition: transform 0.2s;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--surface-border);
 }
 
 .card [class~='p-card-header'] {
@@ -61,7 +57,6 @@
   align-items: center;
   margin: 0;
   padding: 0.5rem 0 0;
-  user-select: none;
 }
 
 .card [class~='p-card-footer'] {
@@ -73,7 +68,7 @@
   padding: 0;
   margin: 0;
   height: 180px;
-  width: 250px;
+  width: 255px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +78,7 @@
   padding: 0;
   margin: 0;
   height: 180px;
-  width: 250px;
+  width: 255px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,9 +96,8 @@
 .flag {
   width: 200px;
   height: 100px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--surface-border);
   border-radius: var(--border-radius);
   object-fit: cover;
   -webkit-user-drag: none;
-  user-select: none;
 }

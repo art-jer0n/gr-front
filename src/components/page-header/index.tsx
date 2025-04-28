@@ -58,23 +58,22 @@ const PageHeader: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <img
-            className={styles.logo}
-            src="../../assets/images/logo.svg"
-            alt="Роснефть" />
-          <div className={styles.separator}></div>
-          <div className={styles.title}>{title}</div>
-        </div>
-        <div className={styles.setting}>
-          <i
-            className={classNames(styles.setting_icon, "pi pi-cog")}
-            onClick={(e) => menuRef.current?.toggle(e)} />
-          <Menu
-            ref={menuRef}
-            popup
-            model={settingsItems}
-            className={styles.menu}
-            id="settings_menu" />
+          <div className={styles.main}>
+            <img className={styles.logo} src="../../assets/images/logo.svg" alt="Роснефть" />
+            <div className={styles.separator}></div>
+            <div className={styles.title}>{title}</div>
+          </div>
+          <div className={styles.setting}>
+            <i
+              className={classNames(styles.setting_icon, "pi pi-cog")}
+              onClick={(e) => menuRef.current?.toggle(e)} />
+            <Menu
+              ref={menuRef}
+              popup
+              model={settingsItems}
+              className={styles.menu}
+              id="settings-menu" />
+          </div>
         </div>
       </div>
       <div className={styles.breadcrumb_container_1}>

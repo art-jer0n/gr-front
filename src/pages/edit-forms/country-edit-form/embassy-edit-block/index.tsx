@@ -45,36 +45,36 @@ const EmbassyEditBlock: React.FC<EmbassyEditBlockProps> = ({
             <div className={styles.item}>
               <FloatLabel>
                 <InputText
-                  id={`embassy_name_${embassy.embassyId}`}
+                  id={`embassy-name-${embassy.embassyId}`}
                   value={embassy.embassyName}
                   onChange={(event) => handleInputTextChange(event, "embassyName")}
                   style={{ width: "100%" }}
                   className={errors?.embassyName ? styles.error_input : ""} />
-                <label htmlFor={`embassy_name_${embassy.embassyId}`}>Наименование</label>
+                <label htmlFor={`embassy-name-${embassy.embassyId}`}>Наименование</label>
               </FloatLabel>
               {errors?.embassyName && (<small className={styles.error_text}>{errors.embassyName}</small>)}
             </div>
             <div className={styles.item}>
               <FloatLabel>
                 <InputText
-                  id={`embassy_address_${embassy.embassyId}`}
+                  id={`embassy-address-${embassy.embassyId}`}
                   value={embassy.embassyAddress}
                   onChange={(event) => handleInputTextChange(event, "embassyAddress")}
                   style={{ width: "100%" }}
                   className={errors?.embassyAddress ? styles.error_input : ""} />
-                <label htmlFor={`embassy_address_${embassy.embassyId}`}>Адрес</label>
+                <label htmlFor={`embassy-address-${embassy.embassyId}`}>Адрес</label>
               </FloatLabel>
               {errors?.embassyAddress && (<small className={styles.error_text}>{errors.embassyAddress}</small>)}
             </div>
             <div className={styles.item}>
               <FloatLabel>
                 <InputText
-                  id={`embassy_phone_${embassy.embassyId}`}
+                  id={`embassy-phone-${embassy.embassyId}`}
                   value={embassy.embassyPhone}
                   onChange={(event) => handleInputTextChange(event, "embassyPhone")}
                   style={{ width: "100%" }}
                   className={errors?.embassyPhone ? styles.error_input : ""} />
-                <label htmlFor={`embassy_phone_${embassy.embassyId}`}>Телефон</label>
+                <label htmlFor={`embassy-phone-${embassy.embassyId}`}>Телефон</label>
               </FloatLabel>
               {errors?.embassyPhone && (<small className={styles.error_text}>{errors.embassyPhone}</small>)}
             </div>
@@ -94,49 +94,49 @@ const EmbassyEditBlock: React.FC<EmbassyEditBlockProps> = ({
         <div className={styles.item}>
           <FloatLabel>
             <InputText
-              id={`embassy_work_hours_${embassy.embassyId}`}
+              id={`embassy-work-hours-${embassy.embassyId}`}
               value={embassy.embassyWorkHours}
               onChange={(event) => handleInputTextChange(event, "embassyWorkHours")}
               style={{ width: "100%" }}
               className={errors?.embassyWorkHours ? styles.error_input : ""} />
-            <label htmlFor={`embassy_work_hours_${embassy.embassyId}`}>Часы работы</label>
+            <label htmlFor={`embassy-work-hours-${embassy.embassyId}`}>Часы работы</label>
           </FloatLabel>
           {errors?.embassyWorkHours && (<small className={styles.error_text}>{errors.embassyWorkHours}</small>)}
         </div>
         <div className={styles.item}>
           <FloatLabel>
             <InputText
-              id={`embassy_fax_${embassy.embassyId}`}
+              id={`embassy-fax-${embassy.embassyId}`}
               value={embassy.embassyFax}
               onChange={(event) => handleInputTextChange(event, "embassyFax")}
               style={{ width: "100%" }}
               className={errors?.embassyFax ? styles.error_input : ""} />
-            <label htmlFor={`embassy_fax_${embassy.embassyId}`}>Факс</label>
+            <label htmlFor={`embassy-fax-${embassy.embassyId}`}>Факс</label>
           </FloatLabel>
           {errors?.embassyFax && (<small className={styles.error_text}>{errors.embassyFax}</small>)}
         </div>
         <div className={styles.item}>
           <FloatLabel>
             <InputText
-              id={`embassy_website_${embassy.embassyId}`}
+              id={`embassy-website-${embassy.embassyId}`}
               value={embassy.embassyWebsite}
               onChange={(event) => handleInputTextChange(event, "embassyWebsite")}
               style={{ width: "100%" }}
               className={errors?.embassyWebsite ? styles.error_input : ""}
             />
-            <label htmlFor={`embassy_website_${embassy.embassyId}`}>Веб-сайт</label>
+            <label htmlFor={`embassy-website-${embassy.embassyId}`}>Веб-сайт</label>
           </FloatLabel>
           {errors?.embassyWebsite && (<small className={styles.error_text}>{errors.embassyWebsite}</small>)}
         </div>
         <div className={styles.item}>
           <FloatLabel>
             <InputText
-              id={`embassy_email_${embassy.embassyId}`}
+              id={`embassy-email-${embassy.embassyId}`}
               value={embassy.embassyEmail}
               onChange={(event) => handleInputTextChange(event, "embassyEmail")}
               style={{ width: "100%" }}
               className={errors?.embassyEmail ? styles.error_input : ""} />
-            <label htmlFor={`embassy_email_${embassy.embassyId}`}>Email</label>
+            <label htmlFor={`embassy-email-${embassy.embassyId}`}>Email</label>
           </FloatLabel>
           {errors?.embassyEmail && (<small className={styles.error_text}>{errors.embassyEmail}</small>)}
         </div>
@@ -155,24 +155,24 @@ const EmbassyEditBlock: React.FC<EmbassyEditBlockProps> = ({
             <div className={styles.item}>
               <FloatLabel>
                 <InputText
-                  id={`ambassador_name_${embassy.embassyId}`}
+                  id={`ambassador-name-${embassy.embassyId}`}
                   value={embassy.ambassadorName}
                   onChange={(event) => handleInputTextChange(event, "ambassadorName")}
                   style={{ width: "100%" }}
                   className={errors?.ambassadorName ? styles.error_input : ""} />
-                <label htmlFor={`ambassador_name_${embassy.embassyId}`}>ФИО</label>
+                <label htmlFor={`ambassador-name-${embassy.embassyId}`}>ФИО</label>
               </FloatLabel>
               {errors?.ambassadorName && (<small className={styles.error_text}>{errors.ambassadorName}</small>)}
             </div>
             <div className={styles.item}>
               <FloatLabel>
                 <InputText
-                  id={`ambassador_job_title_${embassy.embassyId}`}
+                  id={`ambassador-job-title-${embassy.embassyId}`}
                   value={embassy.ambassadorJobTitle}
                   onChange={(event) => handleInputTextChange(event, "ambassadorJobTitle")}
                   style={{ width: "100%" }}
                   className={errors?.ambassadorJobTitle ? styles.error_input : ""} />
-                <label htmlFor={`ambassador_job_title_${embassy.embassyId}`}>Должность</label>
+                <label htmlFor={`ambassador-job-title-${embassy.embassyId}`}>Должность</label>
               </FloatLabel>
               {errors?.ambassadorJobTitle && (<small className={styles.error_text}>{errors.ambassadorJobTitle}</small>)}
             </div>

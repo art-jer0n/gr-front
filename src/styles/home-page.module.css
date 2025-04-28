@@ -3,15 +3,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  overflow: auto;
   gap: 1rem;  
   margin: 0 auto;
   padding: 0;
   width: var(--page-content-width);
   min-width: var(--page-content-min-width);
-  max-height: var(--page-content-height);
-  height: var(--page-content-height);
-  
+  height: 100%;
 }
 
 .top_container {
@@ -25,7 +22,7 @@
 
 .map_container {
   width: 70%;
-  height: 100%;
+  min-height: 485px;
   min-width: 300px;
   background-color: #f0f0f0;
   display: flex;
@@ -35,8 +32,8 @@
 
 .calendar_container {
   width: 30%;
+  height: 485px;
   min-width: 410px;
-  min-height: 485px;
   background-color: #f0f0f0;
   display: flex;
   align-items: center;
@@ -74,17 +71,42 @@
 }
 
 .link {
-  width: 100%;
-  padding: 1rem;
-  margin: 0;
-  border: 1px solid var(--surface-border);
-  background: var(--surface-section);
-  color: var(--text-color);
-  font-weight: 600;
+  display: block;
   cursor: pointer;
   user-select: none;
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  margin: 0;
+  background: var(--surface-section);
+  border: 1px solid var(--surface-border);
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .link:hover {
   background: var(--surface-hover);
+}
+
+.link.disabled {
+  cursor: auto;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--surface-200),
+    var(--surface-200) 2px,
+    var(--surface-ground) 2px,
+    var(--surface-ground) 4px
+  );
+}
+
+.link.disabled:hover {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--surface-200),
+    var(--surface-200) 2px,
+    var(--surface-ground) 2px,
+    var(--surface-ground) 4px
+  );
 }

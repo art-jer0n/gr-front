@@ -27,6 +27,7 @@ const CountryMap: React.FC<CountryMapProps> = () => {
           DEFAULT_MAP_STATE,
           DEFAULT_MAP_OPTIONS
         );
+
         map.options.set("maxZoom", DEFAULT_MAP_STATE.maxZoom);
         map.options.set("minZoom", DEFAULT_MAP_STATE.minZoom);
         mapRef.current = map;

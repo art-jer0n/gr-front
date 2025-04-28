@@ -145,9 +145,9 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                 <div className={styles.form}>
                     <div className={styles.field}>
                         <FloatLabel>
-                            <label htmlFor="news_item_title">Заголовок</label>
+                            <label htmlFor="news-item-title">Заголовок</label>
                             <InputText
-                                id="news_item_title"
+                                id="news-item-title"
                                 style={{ width: "100%" }}
                                 value={editableItem.title}
                                 onChange={(e) => setEditableItem({ ...editableItem, title: e.target.value })} />
@@ -155,9 +155,9 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                     </div>
                     <div className={styles.field}>
                         <FloatLabel>
-                            <label htmlFor="news_item_date">Дата</label>
+                            <label htmlFor="news-item-date">Дата</label>
                             <Calendar
-                                id="news_item_date"
+                                id="news-item-date"
                                 style={{ width: "100%" }}
                                 panelClassName={styles.calendar_panel}
                                 value={editableItem.date}
@@ -170,9 +170,9 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                     </div>
                     <div className={styles.field}>
                         <FloatLabel>
-                            <label htmlFor="news_item_content">Содержание</label>
+                            <label htmlFor="news-item-content">Содержание</label>
                             <InputTextarea
-                                id="news_item_content"
+                                id="news-item-content"
                                 style={{ width: "100%" }}
                                 value={editableItem.content}
                                 onChange={(e) => setEditableItem({ ...editableItem, content: e.target.value })}

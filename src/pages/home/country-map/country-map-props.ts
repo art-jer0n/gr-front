@@ -1,3 +1,1 @@
-export interface CountryMapProps {
-
-}
+export interface CountryMapProps { }

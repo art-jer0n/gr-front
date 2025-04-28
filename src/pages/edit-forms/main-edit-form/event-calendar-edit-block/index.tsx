@@ -133,9 +133,9 @@ const EventCalendarEditBlock: React.FC<EventCalendarEditBlockProps> = ({ items, 
                 <div className={styles.form}>
                     <div className={styles.field}>
                         <FloatLabel>
-                            <label htmlFor="calendar_event_date">Дата</label>
+                            <label htmlFor="calendar-event-date">Дата</label>
                             <Calendar
-                                id="calendar_event_date"
+                                id="calendar-event-date"
                                 style={{ width: "100%" }}
                                 panelClassName={styles.calendar_panel}
                                 value={editableItem.date}
@@ -148,9 +148,9 @@ const EventCalendarEditBlock: React.FC<EventCalendarEditBlockProps> = ({ items, 
                     </div>
                     <div className={styles.field}>
                         <FloatLabel>
-                            <label htmlFor="calendar_event_text">Описание</label>
+                            <label htmlFor="calendar-event-text">Описание</label>
                             <InputTextarea
-                                id="calendar_event_text"
+                                id="calendar-event-text"
                                 style={{ width: "100%" }}
                                 value={editableItem.text}
                                 onChange={(e) => setEditableItem({ ...editableItem, text: e.target.value })}

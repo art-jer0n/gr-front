@@ -4,17 +4,23 @@
   padding: 0;
   margin: 0 auto;
   width: var(--page-content-width);
+  min-width: var(--page-content-min-width);
+  user-select: none;
 }
 
 .toolbar {
+  padding: 1rem 0;
+  margin: 0 auto;
+  gap: 1rem;
+  background: var(--gray-100);
   height: var(--page-toolbar-height);
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding: 1rem 0;
-  gap: 0 1rem;
+  position: sticky;
   user-select: none;
+  z-index: 100;
+  top: 0;
 }
 
 .button {
@@ -113,8 +119,8 @@
 .card_header_button {}
 
 .forms {
-  height: calc(var(--page-content-height) - var(--page-toolbar-height));
-  max-height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  /* height: calc(var(--page-content-height) - var(--page-toolbar-height));
+  max-height: calc(var(--page-content-height) - var(--page-toolbar-height)); */
   margin: 0 0 2rem;
   padding: 0;
   gap: 1rem;

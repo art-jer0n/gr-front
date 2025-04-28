@@ -28,9 +28,6 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "./App.css";
 
-
-
-
 const DevPage: React.FC = () => {
   return (
     <div className="dev_container">
@@ -49,11 +46,13 @@ const LoadingPage: React.FC = () => {
 
 
 const Layout: React.FC = () => (
-  <>
+  <div className="page_container">
     <PageHeader />
-    <Outlet />
+    <div className="page_body">
+      <Outlet />
+    </div>
     <PageFooter />
-  </>
+  </div>
 );
 
 const App: React.FC = () => {

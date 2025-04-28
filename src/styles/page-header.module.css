@@ -1,9 +1,9 @@
-@import url("./variables.module.css");
+ @import url("./variables.module.css");
 
-.container {
+ .container {
   width: 100%;
-  min-width: 900px;
   height: 80px;
+  min-width: var(--page-content-min-width);
   padding: 0 0.2rem 0.2rem;
   margin: 0;
   display: flex;
@@ -14,11 +14,19 @@
 }
 
 .content {
-  width: 70%;
-  min-width: 900px;
+  width: var(--page-content-width);
+  min-width: var(--page-content-min-width);
   gap: 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.main {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logo {
@@ -66,7 +74,7 @@
 
 .breadcrumb_container_1 {
   width: 100%;
-  min-width: 900px;
+  min-width: var(--page-content-min-width);
   height: 40px;
   display: flex;
   align-items: center;
@@ -78,7 +86,7 @@
 
 .breadcrumb_container {
   width: 70%;
-  min-width: 900px;
+  min-width: var(--page-content-min-width);
   padding: 0 0.2rem;
   margin: 0;
   display: flex;

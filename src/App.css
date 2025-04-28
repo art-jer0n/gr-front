@@ -16,3 +16,19 @@
   color: var(--text-color)
 }
 
+.page_container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page_body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  max-height: var(--page-content-height);
+  min-height: var(--page-content-height);
+}

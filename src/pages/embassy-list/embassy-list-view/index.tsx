@@ -12,8 +12,7 @@ const EmbassyListView: React.FC<EmbassyListViewProps> = ({ embassies }) => {
       listTemplate={listTemplate}
       layout="list"
       emptyMessage={EMPTY_MESSAGE}
-      className={styles.view}
-    />
+      className={styles.view} />
   );
 };
 

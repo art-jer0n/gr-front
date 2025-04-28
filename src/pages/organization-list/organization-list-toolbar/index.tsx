@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-// import { Button } from "primereact/button";
+import { Button } from "primereact/button";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
 import { OrganizationListToolbarProps } from "./organization-lsit-toolbar-props";
 import * as styles from "styles/organization-list.module.css";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const OrganizationListToolbar: React.FC<OrganizationListToolbarProps> = ({ onFilterChange, }) => {
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const [searchText, setSearchText] = useState<string>("");
 
@@ -23,17 +23,15 @@ const OrganizationListToolbar: React.FC<OrganizationListToolbarProps> = ({ onFil
       <IconField iconPosition="left">
         <InputIcon className="pi pi-search"> </InputIcon>
         <InputText
-          style={{ width: "70vw" }}
+          style={{ width: "55vw", minWidth: "550px" }}
           value={searchText}
           onChange={handleSearchChange} />
       </IconField>
-      {/* <Button
+      <Button
         label="Новая организация"
         icon="pi pi-plus"
-        style={{ width: "15vw" }}
-        className={styles.button}
-        onClick={() => navigate(`/organization/edit/new`)}
-      /> */}
+        style={{ width: "100%", minWidth: "250px" }}
+        onClick={() => navigate(`/organization/edit/new`)} />
     </div>
   );
 };

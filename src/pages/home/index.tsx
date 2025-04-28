@@ -4,7 +4,7 @@ import * as styles from "styles/home-page.module.css";
 import CountryMap from "./country-map";
 import EventCalendar from "./event-calendar";
 import NewsCarousel from "./news-carusel";
-import { useNavigate } from 'react-router-dom';
+import LinkBlock from "./link-block";
 
 const HomePage: React.FC = () => {
   const { setTitle, setBreadcrumbs } = useContext(PageContext);
@@ -13,8 +13,6 @@ const HomePage: React.FC = () => {
     setTitle("Международный GR");
     setBreadcrumbs([]);
   }, [setTitle]);
-
-  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
@@ -26,26 +24,12 @@ const HomePage: React.FC = () => {
           <EventCalendar />
         </div>
       </div>
-
       <div className={styles.bottom_container}>
         <div className={styles.news_container}>
           <NewsCarousel />
         </div>
         <div className={styles.links_container}>
-          <div
-            className={styles.link}
-            onClick={() => navigate("/country")}
-            role="link"
-          >
-            Посольства
-          </div>
-          <div
-            className={styles.link}
-            onClick={() => navigate("/organization")}
-            role="link"
-          >
-            Международные организации
-          </div>
+          <LinkBlock />
         </div>
       </div>
     </div>

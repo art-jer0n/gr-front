@@ -39,10 +39,7 @@ const EmbassyList: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <EmbassyListToolbar
-        onFilterChange={handleFilterChange}
-        countryId={Number(id)}
-      />
+      <EmbassyListToolbar onFilterChange={handleFilterChange} countryId={Number(id)} />
       <EmbassyListView embassies={embassies} />
     </div>
   );

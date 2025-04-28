@@ -87,12 +87,12 @@ const OrganizationEditBlock: React.FC<OrganizationEditBlockProps> = ({
             <div className={styles.item}>
               <FloatLabel>
                 <InputText
-                  id="shortName"
+                  id="short-name"
                   value={organization.shortName}
                   onChange={(event) => handleInputTextChange(event, "shortName")}
                   style={{ width: "90%" }}
                   className={errors?.shortName ? styles.error_input : ""} />
-                <label htmlFor="shortName">Сокращенное наименование</label>
+                <label htmlFor="short-name">Сокращенное наименование</label>
               </FloatLabel>
               {errors?.shortName && (<small className={styles.error_text}>{errors.shortName}</small>)}
             </div>
