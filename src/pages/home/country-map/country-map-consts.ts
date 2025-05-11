@@ -24,12 +24,12 @@ export const MAP_STYLE: React.CSSProperties = {
 }
 
 export const POLYGON_COLORS: any = [
-    { border: "#d32f2f", fill: "#ffcdd2" },
-    { border: "#1976d2", fill: "#bbdefb" },
-    { border: "#388e3c", fill: "#c8e6c9" },
+    // { border: "#d32f2f", fill: "#ffcdd2" },
+    // { border: "#1976d2", fill: "#bbdefb" },
+    // { border: "#388e3c", fill: "#c8e6c9" },
     { border: "#fbc02d", fill: "#fff9c4" },
-    { border: "#7b1fa2", fill: "#e1bee7" },
-    { border: "#f57c00", fill: "#ffe0b2" },
-    { border: "#00796b", fill: "#b2dfdb" },
-    { border: "#c0ca33", fill: "#f0f4c3" },
+    // { border: "#7b1fa2", fill: "#e1bee7" },
+    // { border: "#f57c00", fill: "#ffe0b2" },
+    // { border: "#00796b", fill: "#b2dfdb" },
+    // { border: "#c0ca33", fill: "#f0f4c3" },
 ];

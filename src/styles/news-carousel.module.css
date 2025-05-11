@@ -36,6 +36,7 @@
 
 .logo {
   height: 60px;
+  padding: 0 10px;
   -webkit-user-drag: none;
 }
 

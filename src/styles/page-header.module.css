@@ -1,6 +1,12 @@
- @import url("./variables.module.css");
+@import url("./variables.module.css");
 
- .container {
+.page_header {
+  width: 100%;
+  background: var(--surface-0);
+  user-select: none;
+}
+
+.header_container {
   width: 100%;
   height: 80px;
   min-width: var(--page-content-min-width);
@@ -9,11 +15,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-0);
-  user-select: none;
 }
 
-.content {
+.header_content {
   width: var(--page-content-width);
   min-width: var(--page-content-min-width);
   gap: 1.5rem;
@@ -22,57 +26,52 @@
   justify-content: space-between;
 }
 
-.main {
+.brand_section {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 1rem;
 }
 
-.logo {
+.brand_logo {
   height: 60px;
   -webkit-user-drag: none;
+  cursor: pointer;
 }
 
-.separator {
+.brand_separator {
   width: 3px;
   height: 60px;
   background-color: var(--text-color);
   opacity: 0.7;
 }
 
-.title {
+.brand_title {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-color);
   text-transform: uppercase;
+  margin: 0;
 }
 
-.setting {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  height: 100%;
-}
-
-.menu {
-  width: 250px;
+.navigation_menu {
+  z-index: 1001;
   font-size: 12px;
-  margin: 10px 0 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: none;
+  border: none;
 }
 
-.setting_icon {
-  font-size: 1.2rem;
-  margin: 30px 0 0;
-  cursor: pointer;
-  color: var(--text-color);
+.navigation_menu [class~='p-menubar-root-list'] > li {
+  width: 200px;
 }
 
-.setting_icon:hover {
-  color: var(--primary-color)
+.navigation_menu [class~='p-submenu-list'] {
+  width: 200px;
 }
 
-.breadcrumb_container_1 {
+.breadcrumbs_wrapper {
   width: 100%;
   min-width: var(--page-content-min-width);
   height: 40px;
@@ -81,25 +80,23 @@
   justify-content: center;
   border-bottom: 3px solid var(--primary-color);
   background: var(--surface-0);
-  user-select: none;
 }
 
-.breadcrumb_container {
-  width: 70%;
+.breadcrumbs_container {
+  width: var(--page-content-width);
   min-width: var(--page-content-min-width);
   padding: 0 0.2rem;
   margin: 0;
   display: flex;
   align-items: center;
-  user-select: none;
 }
 
-.breadcrumb {
+.breadcrumbs {
   background: none;
   border: none;
   padding: 0;
   margin: 0;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 600
+  font-weight: 600;
 }

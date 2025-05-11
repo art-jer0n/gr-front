@@ -1,90 +1,72 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { PageContext } from "page-context";
 import { BreadCrumb } from "primereact/breadcrumb";
-import { Menu } from "primereact/menu";
 import { MenuItem } from "primereact/menuitem";
 import { useNavigate } from "react-router-dom";
 import * as styles from "styles/page-header.module.css";
-import { classNames } from "primereact/utils";
+import { Menubar } from "primereact/menubar";
 
 const PageHeader: React.FC = () => {
   const { title, breadcrumbs } = useContext(PageContext);
-
   const navigate = useNavigate();
 
-  const menuRef = useRef<Menu>(null);
-
-  const home: MenuItem = {
+  const homeMenuItem: MenuItem = {
     label: "Главная",
     url: "/",
   };
 
-  const settingsItems: MenuItem[] = [
+  const navigationMenuItems: MenuItem[] = [
     {
-      label: "Настрока 1",
-      icon: "pi pi-cog",
-      disabled: true
-    },
-    {
-      label: "Настрока 2",
-      icon: "pi pi-cog",
-      disabled: true
-    },
-    {
-      label: "Форма редактирования",
+      label: "Редактирование",
       icon: "pi pi-pencil",
-      command: () => {
-        navigate(`/edit`);
-      },
+      items: [
+        {
+          label: "Домашнаяя",
+          command: () => navigate("/edit"),
+        },
+        {
+          label: "Посольства",
+          command: () => navigate("/country/edit/new"),
+        },
+        {
+          label: "Международные организации",
+          command: () => navigate("/organization/edit/new"),
+        },
+      ],
     },
-    {
-      label: "Форма редактирования посольств",
-      icon: "pi pi-pencil",
-      command: () => {
-        navigate(`/country/edit/new`);
-      },
-    },
-    {
-      label: "Форма редактирования международных организации",
-      icon: "pi pi-pencil",
-      command: () => {
-        navigate(`/organization/edit/new`);
-      },
-    }
-
   ];
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.main}>
-            <img className={styles.logo} src="../../assets/images/logo.svg" alt="Роснефть" />
-            <div className={styles.separator}></div>
-            <div className={styles.title}>{title}</div>
+    <header className={styles.page_header}>
+      <div className={styles.header_container}>
+        <div className={styles.header_content}>
+          <div className={styles.brand_section}>
+            <img
+              className={styles.brand_logo}
+              src="../../assets/images/logo.svg"
+              alt="Логотип Роснефть"
+              onClick={() => navigate("/")}
+            />
+            <div className={styles.brand_separator}></div>
+            <h1 className={styles.brand_title}>{title}</h1>
           </div>
-          <div className={styles.setting}>
-            <i
-              className={classNames(styles.setting_icon, "pi pi-cog")}
-              onClick={(e) => menuRef.current?.toggle(e)} />
-            <Menu
-              ref={menuRef}
-              popup
-              model={settingsItems}
-              className={styles.menu}
-              id="settings-menu" />
-          </div>
+          <Menubar
+            className={styles.navigation_menu}
+            model={navigationMenuItems}
+          />
         </div>
       </div>
-      <div className={styles.breadcrumb_container_1}>
-        <div className={styles.breadcrumb_container}>
+
+      <div className={styles.breadcrumbs_wrapper}>
+        <div className={styles.breadcrumbs_container}>
           <BreadCrumb
-            className={styles.breadcrumb}
+            className={styles.breadcrumbs}
             model={breadcrumbs}
-            home={home} />
+            home={homeMenuItem}
+          />
         </div>
       </div>
-    </>
+    </header>
   );
 };
 
