@@ -3,12 +3,13 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { PageProvider } from "./page-context";
 import { ToastContainer } from "react-toastify";
 import { addLocale } from "primereact/api";
-import { COUNTRIES, ORGANIZATIONS, EMBASSIES, LOCALE_RU, NEWS, EVENTS } from "./app-consts";
+import { COUNTRIES, ORGANIZATIONS, EMBASSIES, LOCALE_RU, NEWS, EVENTS, PRIME_REACT_PROVIDER_OPTIONS } from "./app-consts";
 import { getCountries, saveCountries } from "./services/country-service";
 import { getEmbassies, saveEmbassies } from "./services/embassy-service";
 import { getOrganizations, saveOrganizations } from "./services/organization-service";
 import { getNews, saveNews } from "services/news-service";
 import { getEvents, saveEvents } from "services/calendar-event-service";
+import { PrimeReactProvider } from "primereact/api";
 
 const PageFooter = lazy(() => import("./components/page-footer"));
 const PageHeader = lazy(() => import("./components/page-header"));
@@ -68,28 +69,30 @@ const App: React.FC = () => {
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      <PageProvider>
-        <ToastContainer />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="edit" element={<MainEditForm />} />
-              <Route path="country" element={<Outlet />}>
-                <Route index element={<CountryList />} />
-                <Route path=":id" element={<EmbassyList />} />
-                <Route path="edit/:id" element={<CountryEditForm />} />
+      <PrimeReactProvider value={PRIME_REACT_PROVIDER_OPTIONS}>
+        <PageProvider>
+          <ToastContainer />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="edit" element={<MainEditForm />} />
+                <Route path="country" element={<Outlet />}>
+                  <Route index element={<CountryList />} />
+                  <Route path=":id" element={<EmbassyList />} />
+                  <Route path="edit/:id" element={<CountryEditForm />} />
+                </Route>
+                <Route path="organization" element={<Outlet />}>
+                  <Route index element={<OrganizationList />} />
+                  <Route path=":id" element={<Organization />} />
+                  <Route path="edit/:id" element={<OrganizationEditForm />} />
+                </Route>
+                <Route path="*" element={<DevPage />} />
               </Route>
-              <Route path="organization" element={<Outlet />}>
-                <Route index element={<OrganizationList />} />
-                <Route path=":id" element={<Organization />} />
-                <Route path="edit/:id" element={<OrganizationEditForm />} />
-              </Route>
-              <Route path="*" element={<DevPage />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </PageProvider>
+            </Routes>
+          </BrowserRouter>
+        </PageProvider>
+      </PrimeReactProvider>
     </Suspense>
   );
 };

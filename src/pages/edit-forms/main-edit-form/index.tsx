@@ -53,12 +53,12 @@ const MainEditForm: React.FC = () => {
     };
 
     const handleCancel = () => {
-        toast.current?.show({
-            severity: 'success',
-            summary: 'Отмена',
-            detail: 'Изменения отменены.',
-            life: 3000,
-        });
+        // toast.current?.show({
+        //     severity: 'success',
+        //     summary: 'Отмена',
+        //     detail: 'Изменения отменены.',
+        //     life: 3000,
+        // });
 
         window.location.reload();
     };
@@ -77,19 +77,16 @@ const MainEditForm: React.FC = () => {
             <Toast ref={toast} />
             <MainEditFormToolbar
                 onSave={handleSave}
-                onCancel={handleCancel}
-            />
+                onCancel={handleCancel} />
             <div className={styles.forms}>
                 <NewsEditBlock
                     items={newsList}
                     loading={newsLoading}
-                    onChangeItems={handleChangeNewsList}
-                />
+                    onChangeItems={handleChangeNewsList} />
                 <EventCalendarEditBlock
                     items={events}
                     loading={eventLoading}
-                    onChangeItems={handleChangeEvents}
-                />
+                    onChangeItems={handleChangeEvents} />
             </div>
         </div>
     );

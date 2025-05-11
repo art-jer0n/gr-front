@@ -9,13 +9,13 @@
 }
 
 .toolbar {
-  padding: 1rem 0;
-  margin: 0 auto;
+  padding: 1rem 5px;
+  margin: 0 -5px;
   gap: 1rem;
   background: var(--gray-100);
   height: var(--page-toolbar-height);
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   position: sticky;
   user-select: none;

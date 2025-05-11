@@ -127,12 +127,12 @@ const OrganizationEditForm: React.FC = () => {
   };
 
   const handleCancel = () => {
-    toast.current?.show({
-      severity: 'success',
-      summary: 'Отмена',
-      detail: 'Изменения отменены.',
-      life: 3000,
-    });
+    // toast.current?.show({
+    //   severity: 'success',
+    //   summary: 'Отмена',
+    //   detail: 'Изменения отменены.',
+    //   life: 3000,
+    // });
 
     window.location.reload();
   };
@@ -172,14 +172,11 @@ const OrganizationEditForm: React.FC = () => {
         onSave={handleSave}
         onCancel={handleCancel}
         onDelete={handleDelete} />
-      <div className={styles.forms}>
-        <OrganizationEditBlock
-          toast={toast}
-          organization={organization}
-          onChange={handleCountryChange}
-          errors={error}
-        />
-      </div>
+      <OrganizationEditBlock
+        toast={toast}
+        organization={organization}
+        onChange={handleCountryChange}
+        errors={error} />
     </div>
   );
 };

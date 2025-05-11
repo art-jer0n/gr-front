@@ -27,8 +27,13 @@
   margin: 0;
   padding: 0;
   position: relative;
-  overflow: auto;
+  overflow: auto scroll;
   width: 100%;
   max-height: var(--page-content-height);
   min-height: var(--page-content-height);
+}
+
+
+.card_root {
+ box-shadow: none;
 }

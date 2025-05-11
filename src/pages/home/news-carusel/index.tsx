@@ -23,7 +23,7 @@ const NewsCarousel: React.FC = () => {
         let formattedDate: string = "";
 
         if (date) {
-            formattedDate = format(date, "yyyy-MM-dd");
+            formattedDate = format(date, "dd.MM.yyyy");
         }
 
         return (

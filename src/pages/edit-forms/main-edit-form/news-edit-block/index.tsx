@@ -52,6 +52,16 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
         setSelectedItem(null);
     };
 
+    const handleRowReorder = (e: any) => {
+        const items = e.value
+            .map((item: NewsItem, index: number) => ({
+                ...item,
+                order: index + 100
+            }));
+
+        onChangeItems(items);
+    };
+
     const dialogFooterTemplate = (): React.ReactNode => (
         <div className={styles.dialog_footer}>
             <Button icon="pi pi-check" label="Подтвердить" onClick={() => handleSave()} />
@@ -102,7 +112,15 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                 emptyMessage={EMPTY_MESSAGE}
                 className={styles.table}
                 paginatorClassName={styles.paginator}
-                scrollHeight="450px">
+                scrollHeight="450px"
+                reorderableRows
+                onRowReorder={handleRowReorder}>
+                <Column
+                    align="center"
+                    alignHeader="center"
+                    header="Порядок"
+                    rowReorder
+                    style={{ width: "5%" }} />
                 <Column
                     align="center"
                     alignHeader="center"
@@ -112,7 +130,7 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                     body={(rowData) => dateTemplate(rowData)}
                     bodyClassName={styles.table_body}
                     headerClassName={styles.table_header}
-                    style={{ width: "10%" }} />
+                    style={{ width: "5%" }} />
                 <Column
                     align="left"
                     alignHeader="center"
@@ -133,7 +151,7 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                     body={(rowData) => contentTemplate(rowData)}
                     bodyClassName={styles.table_body}
                     headerClassName={styles.table_header}
-                    style={{ width: "60%" }} />
+                    style={{ width: "55%" }} />
             </DataTable>
 
             <Dialog

@@ -3,4 +3,5 @@ export interface NewsItem {
     title: string;
     content: string;
     date: Date | null;
+    order: number;
 }

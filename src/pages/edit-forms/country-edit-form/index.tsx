@@ -241,12 +241,12 @@ const CountryEditForm: React.FC = () => {
   };
 
   const handleCancel = () => {
-    toast.current?.show({
-      severity: 'success',
-      summary: 'Отмена',
-      detail: 'Изменения отменены.',
-      life: 3000,
-    });
+    // toast.current?.show({
+    //   severity: 'success',
+    //   summary: 'Отмена',
+    //   detail: 'Изменения отменены.',
+    //   life: 3000,
+    // });
 
     window.location.reload();
   };
@@ -299,27 +299,22 @@ const CountryEditForm: React.FC = () => {
         countryId={id ?? "new"}
         onSave={handleSave}
         onCancel={handleCancel}
-        onDelete={handleDelete}
+        onDelete={handleDelete} />
+      <CountryEditBlock
+        country={country}
+        onChange={handleCountryChange}
+        errors={countryErrors}
       />
-      <div className={styles.forms}>
-        <CountryEditBlock
-          country={country}
-          onChange={handleCountryChange}
-          errors={countryErrors}
-        />
-        <EmbassyEditBlock
-          formTitle="Посольство Российской Федерации"
-          embassy={homeEmbassy}
-          onChange={handleEmbassyChange(setHomeEmbassy)}
-          errors={homeEmbassyErrors}
-        />
-        <EmbassyEditBlock
-          formTitle="Посольство иностранного государства"
-          embassy={foreignEmbassy}
-          onChange={handleEmbassyChange(setForeignEmbassy)}
-          errors={foreignEmbassyErrors}
-        />
-      </div>
+      <EmbassyEditBlock
+        formTitle="Посольство Российской Федерации"
+        embassy={homeEmbassy}
+        onChange={handleEmbassyChange(setHomeEmbassy)}
+        errors={homeEmbassyErrors} />
+      <EmbassyEditBlock
+        formTitle="Посольство иностранного государства"
+        embassy={foreignEmbassy}
+        onChange={handleEmbassyChange(setForeignEmbassy)}
+        errors={foreignEmbassyErrors} />
     </div>
   );
 };
