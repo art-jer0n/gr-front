@@ -49,15 +49,13 @@ const CountryEditForm: React.FC = () => {
     const _embassies = getEmbassies();
 
     setCountries(_countries)
+
     if (id === "new") {
       setCountry(DEFAULT_COUNTRY);
       setHomeEmbassy(DEFAULT_EMBASSY);
       setForeignEmbassy(DEFAULT_EMBASSY);
       setTitle("Новая страна, Форма редактирования");
-      setBreadcrumbs([
-        { label: "Страны", url: `/country` },
-        { label: `Форма создания`, url: `/country/edit/new` },
-      ]);
+      setBreadcrumbs([{ label: "Новая страна, Форма редактирования", url: `country/edit/new` }]);
     } else {
       const _country = _countries.find((_) => _.id === Number(id)) ?? DEFAULT_COUNTRY;
       const _countryEmbassies = _embassies.filter((_) => _.countryId === _country.id);
@@ -65,13 +63,8 @@ const CountryEditForm: React.FC = () => {
       setCountry(_country);
       setHomeEmbassy(_countryEmbassies[0] || DEFAULT_EMBASSY);
       setForeignEmbassy(_countryEmbassies[1] || DEFAULT_EMBASSY);
-
       setTitle(`${_country?.name || "Страна"}, Форма редактирования`);
-      setBreadcrumbs([
-        { label: "Страны", url: `/country` },
-        { label: `${_country?.name || "Посольства"}`, url: `/country/${id}` },
-        { label: `Форма редактирования`, url: `/country/edit/${id}` },
-      ]);
+      setBreadcrumbs([{ label: `${_country?.name || "Страна"}, Форма редактирования`, url: `country/edit/${id}` }]);
     }
   }, [id]);
 

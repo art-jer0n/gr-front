@@ -1,0 +1,103 @@
+@import url('./variables.module.css');
+
+.container {
+  padding: 0;
+  margin: 0 auto;
+  width: var(--page-content-width);
+  min-width: var(--page-content-min-width);
+  user-select: none;
+}
+
+.toolbar {
+  padding: 1rem 0;
+  margin: 0 auto;
+  gap: 1rem;
+  background: var(--gray-100);
+  height: var(--page-toolbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  user-select: none;
+  z-index: 100;
+  top: 0;
+}
+
+.view  [class~='p-dataview-content'] {
+  background: none;
+}
+
+.view [class~='p-dataview-emptymessage'] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 255px));
+  justify-content: center;
+  gap: 15px;
+  padding: 0.5rem 0 0;
+}
+
+.card {
+  width: 255px;
+  height: 200px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 1px solid var(--surface-border);
+}
+
+.card [class~='p-card-header'] {
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 0 0;
+}
+
+.card [class~='p-card-footer'] {
+  padding: 0;
+  margin: 0;
+}
+
+.card [class~='p-card-content'] {
+  padding: 0;
+  margin: 0;
+  height: 180px;
+  width: 255px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card [class~='p-card-body']  {
+  padding: 0;
+  margin: 0;
+  height: 180px;
+  width: 255px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border: 1px solid var(--primary-color);
+}
+
+.card:hover [class~='p-card-header'] {
+  color: var(--primary-color);
+}
+
+.flag {
+  width: 200px;
+  height: 100px;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--border-radius);
+  object-fit: cover;
+  -webkit-user-drag: none;
+}

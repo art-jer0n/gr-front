@@ -17,6 +17,24 @@ const PageHeader: React.FC = () => {
 
   const navigationMenuItems: MenuItem[] = [
     {
+      label: "Страницы",
+      icon: "pi pi-list",
+      items: [
+        {
+          label: "Посольства",
+          command: () => navigate("embassy"),
+        },
+        {
+          label: "Международные организации",
+          command: () => navigate("organization"),
+        },
+        {
+          label: "Торговые представительства",
+          command: () => navigate("/trade-mission"),
+        },
+      ],
+    },
+    {
       label: "Редактирование",
       icon: "pi pi-pencil",
       items: [
@@ -25,7 +43,7 @@ const PageHeader: React.FC = () => {
           command: () => navigate("/edit"),
         },
         {
-          label: "Посольства",
+          label: "Страны",
           command: () => navigate("/country/edit/new"),
         },
         {

@@ -1,5 +1,5 @@
-import { Embassy } from 'interfaces/embassy'
+import { Country } from 'interfaces/country'
 
 export interface EmbassyListViewProps {
-  embassies: Embassy[]
+  countries: Country[]
 }

@@ -1,23 +1,22 @@
 import React, { useState } from "react";
+import { Button } from "primereact/button";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
-import { CountryListToolbarProps } from "./country-lsit-toolbar-props";
+import { EmbassyToolbarProps } from "./embassy-toolbar-props";
 import * as styles from "styles/country-list.module.css";
 import { useNavigate } from "react-router";
-import { Button } from "primereact/button";
 
-const CountryListToolbar: React.FC<CountryListToolbarProps> = ({ onFilterChange, }) => {
+const EmbassyToolbar: React.FC<EmbassyToolbarProps> = ({ onFilterChange, countryId, }) => {
 
   const navigate = useNavigate();
 
   const [searchText, setSearchText] = useState<string>("");
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-    onFilterChange(e.target.value);
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value);
+    onFilterChange(event.target.value);
   };
-
   return (
     <div className={styles.toolbar}>
       <IconField iconPosition="left">
@@ -28,12 +27,14 @@ const CountryListToolbar: React.FC<CountryListToolbarProps> = ({ onFilterChange,
           onChange={handleSearchChange} />
       </IconField>
       <Button
-        label="Новая страна"
+        label="Редактировать"
         icon="pi pi-plus"
         style={{ width: "100%", minWidth: "160px" }}
-        onClick={() => navigate("/country/edit/new")} />
+        onClick={() =>
+          navigate(`/country/edit/${countryId}`)
+        } />
     </div>
   );
 };
 
-export default CountryListToolbar;
+export default EmbassyToolbar;

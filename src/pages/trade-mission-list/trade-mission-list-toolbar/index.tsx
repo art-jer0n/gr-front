@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
-import { EmbassyListToolbarProps } from "./embassy-list-toolbar-props";
-import * as styles from "styles/country-list.module.css";
+import { TradeMissionToolbarProps } from "./trade-mission-list-toolbar-props";
+import * as styles from "styles/trade-mission-list.module.css";
 import { useNavigate } from "react-router";
 import { Button } from "primereact/button";
 
-const EmbassyListToolbar: React.FC<EmbassyListToolbarProps> = ({ onFilterChange, }) => {
+const TradeMissionToolbar: React.FC<TradeMissionToolbarProps> = ({ onFilterChange, }) => {
 
   const navigate = useNavigate();
 
@@ -31,10 +31,9 @@ const EmbassyListToolbar: React.FC<EmbassyListToolbarProps> = ({ onFilterChange,
         label="Новая страна"
         icon="pi pi-plus"
         style={{ width: "100%", minWidth: "160px" }}
-        onClick={() => navigate(`/country/edit/new`)}
-      />
+        onClick={() => navigate(`/country/edit/new`)} />
     </div>
   );
 };
 
-export default EmbassyListToolbar;
+export default TradeMissionToolbar;

@@ -15,19 +15,20 @@ const PageFooter = lazy(() => import("./components/page-footer"));
 const PageHeader = lazy(() => import("./components/page-header"));
 const Home = lazy(() => import("./pages/home"));
 const OrganizationList = lazy(() => import("./pages/organization-list"));
-const CountryList = lazy(() => import("./pages/country-list"));
+const Embassy = lazy(() => import("./pages/embassy"));
 const EmbassyList = lazy(() => import("./pages/embassy-list"));
 const CountryEditForm = lazy(() => import("./pages/edit-forms/country-edit-form"));
 const Organization = lazy(() => import("./pages/organization"));
 const OrganizationEditForm = lazy(() => import("./pages/edit-forms/organization-edit-form"));
 const MainEditForm = lazy(() => import("./pages/edit-forms/main-edit-form"));
-
+const TradeMissionList = lazy(() => import("./pages/trade-mission-list"));
 
 import "react-toastify/dist/ReactToastify.css";
 import "primereact/resources/themes/saga-orange/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "./App.css";
+
 
 const DevPage: React.FC = () => {
   return (
@@ -78,14 +79,19 @@ const App: React.FC = () => {
                 <Route index element={<Home />} />
                 <Route path="edit" element={<MainEditForm />} />
                 <Route path="country" element={<Outlet />}>
-                  <Route index element={<CountryList />} />
-                  <Route path=":id" element={<EmbassyList />} />
                   <Route path="edit/:id" element={<CountryEditForm />} />
+                </Route>
+                <Route path="embassy" element={<Outlet />}>
+                  <Route index element={<EmbassyList />} />
+                  <Route path=":id" element={<Embassy />} />
                 </Route>
                 <Route path="organization" element={<Outlet />}>
                   <Route index element={<OrganizationList />} />
                   <Route path=":id" element={<Organization />} />
                   <Route path="edit/:id" element={<OrganizationEditForm />} />
+                </Route>
+                <Route path="trade-mission" element={<Outlet />}>
+                  <Route index element={<TradeMissionList />} />
                 </Route>
                 <Route path="*" element={<DevPage />} />
               </Route>

@@ -1,5 +1,5 @@
 import { Country } from 'interfaces/country'
 
-export interface CountryListViewProps {
+export interface TradeMissionListViewProps {
   countries: Country[]
 }

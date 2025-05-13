@@ -9,14 +9,14 @@ const LinkBlock: React.FC = () => {
 
     return (
         <div className={styles.links_container}>
-            <div className={styles.link} onClick={() => navigate("/country")} role="link">
+            <div className={styles.link} onClick={() => navigate("/embassy")} role="link">
                 Посольства
             </div>
             <div className={styles.link} onClick={() => navigate("/organization")} role="link">
                 Международные организации
             </div>
-            <div className={classNames(styles.link, styles.disabled)} role="link">
-                Ссылка 3
+            <div className={styles.link} onClick={() => navigate("/trade-mission")} role="link">
+                Торговые представительства
             </div>
             <div className={classNames(styles.link, styles.disabled)} role="link">
                 Ссылка 4

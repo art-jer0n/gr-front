@@ -1,13 +1,13 @@
 import React from "react";
 import { DataView } from "primereact/dataview";
-import { CountryListViewProps } from "./country-list-view-props";
+import { TradeMissionListViewProps } from "./trade-mission-list-view-props";
 import { Card } from "primereact/card";
 import * as styles from "styles/country-list.module.css";
 import { useNavigate } from "react-router";
 import { Country } from "interfaces/country";
 import { EMPTY_MESSAGE, EMPTY_SHORT_MESSAGE } from "app-consts";
 
-const CountryListView: React.FC<CountryListViewProps> = ({ countries }) => {
+const TradeMissionListView: React.FC<TradeMissionListViewProps> = ({ countries }) => {
   const navigate = useNavigate();
 
   const itemTemplate = (country: Country) => {
@@ -16,7 +16,7 @@ const CountryListView: React.FC<CountryListViewProps> = ({ countries }) => {
         key={`country_card_${country?.id}`}
         className={styles.card}
         header={country?.name || EMPTY_SHORT_MESSAGE}
-        onClick={() => navigate(`/country/${country?.id || "new"}`)}
+        onClick={() => navigate(`/trade-mission/${country?.id || "new"}`)}
       >
         <img
           key={`country_flag_${country?.id}`}
@@ -48,4 +48,4 @@ const CountryListView: React.FC<CountryListViewProps> = ({ countries }) => {
   );
 };
 
-export default CountryListView;
+export default TradeMissionListView;

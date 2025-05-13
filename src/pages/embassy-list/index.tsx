@@ -1,46 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { Embassy } from "../../interfaces/embassy";
-import { PageContext } from "../../page-context";
-import { getCountries } from "../../services/country-service";
-import { getEmbassies } from "../../services/embassy-service";
+import { Country } from "interfaces/country";
+import { PageContext } from "page-context";
+import { getCountries } from "services/country-service";
 import EmbassyListToolbar from "./embassy-list-toolbar";
 import EmbassyListView from "./embassy-list-view";
-import * as styles from "styles/embassy-list.module.css";
+import * as styles from "styles/country-list.module.css";
 
 const EmbassyList: React.FC = () => {
   const { setTitle, setBreadcrumbs } = useContext(PageContext);
 
-  const { id } = useParams();
-
   useEffect(() => {
-    const country = getCountries().find((country) => Number(id) === country.id);
-    setTitle(`${country?.name}, Посольства`);
-    setBreadcrumbs([
-      { label: `Страны`, url: "/country", },
-      { label: `${country?.name}, Посольства`, url: `/country/${country?.id}`, },
-    ]);
-  }, [setTitle, setBreadcrumbs]);
+    setTitle("Посольства");
+    setBreadcrumbs([{ label: "Посольства", url: "/embassy" }]);
+  }, [setTitle]);
 
-  const [embassies, setEmbassies] = useState<Embassy[]>(
-    getEmbassies().filter((embassy) => Number(id) === embassy.countryId)
-  );
+  const [countries, setCountries] = useState<Country[]>(getCountries());
 
   const handleFilterChange = (searchText: string) => {
     const lowerText = searchText.toLowerCase();
-    const filtered = getEmbassies().filter(
-      (embassy) =>
-        Number(id) === embassy.countryId &&
-        embassy.embassyName.toLowerCase().includes(lowerText)
-    );
-
-    setEmbassies(filtered);
+    const filtered = getCountries()
+      .filter((country) => country.name.toLowerCase().includes(lowerText));
+    setCountries(filtered);
   };
 
   return (
     <div className={styles.container}>
-      <EmbassyListToolbar onFilterChange={handleFilterChange} countryId={Number(id)} />
-      <EmbassyListView embassies={embassies} />
+      <EmbassyListToolbar onFilterChange={handleFilterChange} />
+      <EmbassyListView countries={countries} />
     </div>
   );
 };
