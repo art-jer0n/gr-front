@@ -4,6 +4,8 @@ import { Embassy } from './interfaces/embassy'
 import { Organization } from './interfaces/organization'
 import { CalendarEvent } from 'interfaces/calendar-event';
 import { APIOptions } from 'primereact/api';
+import { TradeMissionDocument } from 'interfaces/trade-mission-document';
+import { TradeMission } from 'interfaces/trade-mission';
 
 export const EMPTY_MESSAGE: string = "Нет данных для отображения";
 
@@ -14,6 +16,9 @@ export const PRIME_REACT_PROVIDER_OPTIONS: Partial<APIOptions> = {
     card: {
       root: { className: "card_root" },
     },
+    dropdown: {
+      clearIcon: { className: "dropdown_clear_icon" }
+    }
   }
 }
 
@@ -39,7 +44,7 @@ export const DEFAULT_COUNTRY: Country = {
 
 export const DEFAULT_EMBASSY: Embassy = {
   countryId: 0,
-  embassyId: 0,
+  id: 0,
   embassyName: '',
   embassyAddress: '',
   embassyPhone: '',
@@ -65,7 +70,7 @@ export const DEFAULT_OGRANIZATION: Organization = {
 export const EMBASSIES: Embassy[] = [
   {
     countryId: 31,
-    embassyId: 1,
+    id: 1,
     embassyName: 'Посольство Российской Федерации в Австрии',
     embassyAddress: 'Reisnerstrasse 45-47, 1030, Wien, Österreich',
     embassyPhone: '+43-1-712-12-29, +43-1-713-86-22',
@@ -82,7 +87,7 @@ export const EMBASSIES: Embassy[] = [
   },
   {
     countryId: 31,
-    embassyId: 2,
+    id: 2,
     embassyName: 'Посольство Австрии в Российской Федерации',
     embassyAddress: '115127, Москва, Староконюшенный переулок, 1',
     embassyPhone: '(+7 495) 780 60 66',
@@ -367,3 +372,100 @@ export const LOCALE_RU = {
   clear: "Очистить",
 };
 
+export const TRADE_MISSION_DOCUMENTS: TradeMissionDocument[] = [
+  {
+    id: 1,
+    url: "https://testingcenter.spbu.ru/images/files/TRKI-3.pdf",
+    name: "TRKI-3.pdf",
+    date: new Date("2024-12-31"),
+    countryId: 7,
+  },
+  {
+    id: 2,
+    url: "/docs/Регламент работы.docx",
+    name: "Регламент работы.docx",
+    date: new Date("2025-11-15"),
+    countryId: 7,
+  },
+  {
+    id: 3,
+    url: "/docs/Инструкция по приёму делегаций.pdf",
+    name: "Инструкция по приёму делегаций.pdf",
+    date: new Date("2024-10-01"),
+    countryId: 7,
+  },
+  {
+    id: 4,
+    url: "/docs/Договор о сотрудничестве.docx",
+    name: "Договор о сотрудничестве.docx",
+    date: new Date("2023-06-20"),
+    countryId: 7,
+  },
+  {
+    id: 5,
+    url: "/docs/plan.xlsx",
+    name: "План мероприятий.xlsx",
+    date: new Date("2025-01-10"),
+    countryId: 7,
+  },
+];
+
+export const TRADE_MISSIONS: TradeMission[] = [
+  {
+    id: 10,
+    name: "ТОРГОВОЕ ПРЕДСТАВИТЕЛЬСТВО РОССИЙСКОЙ ФЕДЕРАЦИИ В ФЕДЕРАТИВНОЙ РЕСПУБЛИКЕ БРАЗИЛИИ",
+    representative: "Шереметкер Виктор Вадимович",
+    address: "SHIS QI 5, Chacara 12, Lago Sul, Brasilia - DF, Brasil, CEP 71600 - 520",
+    phone: "+55(61) 3248-0766",
+    fax: "+55(61) 3248 -0962",
+    website: "https://bra.minpromtorg.gov.ru",
+    email: "brasilia@minprom.gov.ru",
+    countryId: 7
+  },
+  {
+    id: 11,
+    name: "ОТДЕЛЕНИЕ ТОРГОВОГО ПРЕДСТАВИТЕЛЬСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ В ФЕДЕРАТИВНОЙ РЕСПУБЛИКЕ БРАЗИЛИЯ В Г.САН - ПАУЛУ",
+    representative: "Торговый представитель Российской Федерации",
+    address: "Rua Traipu, 831, Perdizes, Sao Paulo, Brasil, CEP 01235-000",
+    phone: null,
+    fax: null,
+    website: "https://bra.minpromtorg.gov.ru",
+    email: null,
+    countryId: 7
+  },
+  {
+    id: 12,
+    name: "ОТДЕЛЕНИЕ ТОРГОВОГО ПРЕДСТАВИТЕЛЬСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ В ФЕДЕРАТИВНОЙ РЕСПУБЛИКЕ БРАЗИЛИЯ В Г.САН - ПАУЛУ",
+    representative: "Торговый представитель Российской Федерации",
+    address: "Rua Traipu, 831, Perdizes, Sao Paulo, Brasil, CEP 01235-000",
+    phone: null,
+    fax: null,
+    website: null,
+    email: null,
+    countryId: 7
+  },
+  {
+    id: 12,
+    name: "ОТДЕЛЕНИЕ ТОРГОВОГО ПРЕДСТАВИТЕЛЬСТВА РОССИЙСКОЙ ФЕДЕРАЦИИ В ФЕДЕРАТИВНОЙ РЕСПУБЛИКЕ БРАЗИЛИЯ В Г.САН - ПАУЛУ",
+    representative: "Торговый представитель Российской Федерации",
+    address: "Rua Traipu, 831, Perdizes, Sao Paulo, Brasil, CEP 01235-000",
+    phone: null,
+    fax: null,
+    website: null,
+    email: null,
+    countryId: 1
+  },
+];
+
+export const DEFAULT_TRADE_MISSION: TradeMission =
+{
+  id: 0,
+  name: null,
+  representative: null,
+  address: null,
+  phone: null,
+  fax: null,
+  website: null,
+  email: null,
+  countryId: 0,
+}

@@ -9,7 +9,7 @@ import { EMPTY_SHORT_MESSAGE } from "app-consts";
 const itemTemplate = (embassy: Embassy) => {
   return (
     <Card
-      key={`card_${embassy.embassyId}`}
+      key={`card_${embassy.id}`}
       className={styles.card}
       header={embassy.embassyName || EMPTY_SHORT_MESSAGE}>
       <div className={styles.embassy_photo_block} >
@@ -17,7 +17,7 @@ const itemTemplate = (embassy: Embassy) => {
           preview
           alt="Фото посольства"
           className={styles.embassy_photo}
-          src={embassy.embassyPhotoUrl}
+          src={embassy.embassyPhotoUrl || ""}
           height="230px" />
       </div>
 
@@ -40,21 +40,18 @@ const itemTemplate = (embassy: Embassy) => {
           <strong>Web:</strong>
           <i>
             <Button
-              label={embassy.embassyWebsite}
+              label={embassy.embassyWebsite || ""}
               link
-              onClick={() => window.open(embassy.embassyWebsite, "_blank")}
+              onClick={() => window.open(embassy.embassyWebsite || "", "_blank")}
             />
           </i>
         </div>
         <div className={styles.ellipsis}>
           <strong>E-mail:</strong>
           <Button
-            label={embassy.embassyEmail}
+            label={embassy.embassyEmail || ""}
             link
-            onClick={() =>
-              (window.location.href = `mailto:${embassy.embassyEmail}`)
-            }
-          />
+            onClick={() => (window.location.href = `mailto:${embassy.embassyEmail}`)} />
         </div>
       </div>
 
@@ -63,12 +60,10 @@ const itemTemplate = (embassy: Embassy) => {
           preview
           alt="Фото посла"
           className={styles.ambassador_photo}
-          src={embassy.ambassadorPhotoUrl}
+          src={embassy.ambassadorPhotoUrl || ""}
           height="200px"
         />
-        <div className={styles.ambassador_job_title}>
-          {embassy.ambassadorJobTitle}
-        </div>
+        <div className={styles.ambassador_job_title}>{embassy.ambassadorJobTitle}</div>
         <div className={styles.ambassador_name}>{embassy.ambassadorName}</div>
       </div>
     </Card>

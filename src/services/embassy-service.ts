@@ -14,7 +14,7 @@ export const saveEmbassies = (embassies: Embassy[]): void => {
 export const generateEmbassyId = (): number => {
   const embassies = getEmbassies()
   return (
-    embassies.reduce((max, embassy) => Math.max(max, embassy.embassyId), 0) + 1
+    embassies.reduce((max, embassy) => Math.max(max, embassy.id), 0) + 1
   )
 }
 
@@ -27,7 +27,7 @@ export const addEmbassy = (embassy: Embassy): void => {
 export const updateEmbassy = (updatedEmbassy: Embassy): void => {
   const embassies = getEmbassies()
   const index = embassies.findIndex(
-    e => e.embassyId === updatedEmbassy.embassyId,
+    e => e.id === updatedEmbassy.id,
   )
   if (index !== -1) {
     embassies[index] = updatedEmbassy
@@ -38,7 +38,7 @@ export const updateEmbassy = (updatedEmbassy: Embassy): void => {
 export const deleteEmbassy = (embassyId: number) => {
   const embassies = getEmbassies()
   const updatedEmbassies = embassies.filter(
-    embassy => embassy.embassyId !== embassyId,
+    embassy => embassy.id !== embassyId,
   )
   saveEmbassies(updatedEmbassies)
 }

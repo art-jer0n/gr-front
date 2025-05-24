@@ -119,8 +119,6 @@
 .card_header_button {}
 
 .forms {
-  /* height: calc(var(--page-content-height) - var(--page-toolbar-height));
-  max-height: calc(var(--page-content-height) - var(--page-toolbar-height)); */
   margin: 0 0 2rem;
   padding: 0;
   gap: 1rem;

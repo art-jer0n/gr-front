@@ -37,3 +37,7 @@
 .card_root {
  box-shadow: none;
 }
+
+.dropdown_clear_icon {
+  outline: none;
+}

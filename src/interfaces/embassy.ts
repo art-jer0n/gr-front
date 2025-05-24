@@ -1,15 +1,15 @@
 export interface Embassy {
-  countryId: number
-  embassyId: number
-  embassyName: string
-  embassyAddress: string
-  embassyPhone: string
-  embassyFax: string
-  embassyWorkHours: string
-  embassyWebsite: string
-  embassyEmail: string
-  embassyPhotoUrl: string
-  ambassadorName: string
-  ambassadorJobTitle: string
-  ambassadorPhotoUrl: string
+  id: number
+  countryId: number;
+  embassyName: string | null;
+  embassyAddress: string | null;
+  embassyPhone: string | null;
+  embassyFax: string | null;
+  embassyWorkHours: string | null;
+  embassyWebsite: string | null;
+  embassyEmail: string | null;
+  embassyPhotoUrl: string | null;
+  ambassadorName: string | null;
+  ambassadorJobTitle: string | null;
+  ambassadorPhotoUrl: string | null;
 }

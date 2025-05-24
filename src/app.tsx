@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { PageProvider } from "./page-context";
 import { ToastContainer } from "react-toastify";
 import { addLocale } from "primereact/api";
-import { COUNTRIES, ORGANIZATIONS, EMBASSIES, LOCALE_RU, NEWS, EVENTS, PRIME_REACT_PROVIDER_OPTIONS } from "./app-consts";
+import { COUNTRIES, ORGANIZATIONS, EMBASSIES, LOCALE_RU, NEWS, EVENTS, PRIME_REACT_PROVIDER_OPTIONS, TRADE_MISSIONS, TRADE_MISSION_DOCUMENTS } from "./app-consts";
 import { getCountries, saveCountries } from "./services/country-service";
 import { getEmbassies, saveEmbassies } from "./services/embassy-service";
 import { getOrganizations, saveOrganizations } from "./services/organization-service";
 import { getNews, saveNews } from "services/news-service";
 import { getEvents, saveEvents } from "services/calendar-event-service";
 import { PrimeReactProvider } from "primereact/api";
+import { getTradeMissionDocuments, getTradeMissions, saveTradeMissionDocuments, saveTradeMissions } from "services/trade-mission-service";
 
 const PageFooter = lazy(() => import("./components/page-footer"));
 const PageHeader = lazy(() => import("./components/page-header"));
@@ -22,6 +23,7 @@ const Organization = lazy(() => import("./pages/organization"));
 const OrganizationEditForm = lazy(() => import("./pages/edit-forms/organization-edit-form"));
 const MainEditForm = lazy(() => import("./pages/edit-forms/main-edit-form"));
 const TradeMissionList = lazy(() => import("./pages/trade-mission-list"));
+const TradeMission = lazy(() => import("./pages/trade-mission"));
 
 import "react-toastify/dist/ReactToastify.css";
 import "primereact/resources/themes/saga-orange/theme.css";
@@ -64,6 +66,8 @@ const App: React.FC = () => {
     if (!getOrganizations().length) saveOrganizations(ORGANIZATIONS);
     if (!getNews().length) saveNews(NEWS);
     if (!getEvents().length) saveEvents(EVENTS);
+    if (!getTradeMissions().length) saveTradeMissions(TRADE_MISSIONS);
+    if (!getTradeMissionDocuments().length) saveTradeMissionDocuments(TRADE_MISSION_DOCUMENTS);
     addLocale("ru", LOCALE_RU);
   }, []);
 
@@ -92,6 +96,7 @@ const App: React.FC = () => {
                 </Route>
                 <Route path="trade-mission" element={<Outlet />}>
                   <Route index element={<TradeMissionList />} />
+                  <Route path=":id" element={<TradeMission />} />
                 </Route>
                 <Route path="*" element={<DevPage />} />
               </Route>

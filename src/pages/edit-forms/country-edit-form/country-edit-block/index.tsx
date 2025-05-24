@@ -8,11 +8,7 @@ import { CountryEditBlockProps } from "./country-edit-block-props";
 import * as styles from "styles/country-edit-form.module.css";
 import { Country } from "interfaces/country";
 
-const CountryEditBlock: React.FC<CountryEditBlockProps> = ({
-  country,
-  onChange,
-  errors,
-}) => {
+const CountryEditBlock: React.FC<CountryEditBlockProps> = ({ country, onChange, errors, }) => {
 
   const handleFileUploadSelect = (event: FileUploadSelectEvent, field: keyof Country): void => {
     if (!event.files || !event.files.length) {
@@ -30,22 +26,25 @@ const CountryEditBlock: React.FC<CountryEditBlockProps> = ({
     <Card
       header="Редактирование страны"
       className={styles.card}
-      style={{ height: "200px" }}>
-      <Image
-        id="flag"
-        preview
-        alt="Флаг"
-        className={styles.image}
-        src={country.flagUrl}
-        width="240px"
-        height="120px"
-        style={{ minWidth: "240px", minHeight: "120px" }} />
+      style={{ height: "220px" }}>
+      <div className={styles.left_column}>
+        <Image
+          id="flag"
+          preview
+          alt="Флаг"
+          className={errors?.flagUrl ? styles.error_input : styles.image}
+          src={country.flagUrl || ""}
+          width="240px"
+          height="120px"
+          style={{ minWidth: "240px", minHeight: "120px" }} />
+        {errors?.flagUrl && (<small className={styles.error_text}>{errors.flagUrl}</small>)}
+      </div>
       <div className={styles.items} style={{ height: "120px" }}>
         <div className={styles.item}>
           <FloatLabel>
             <InputText
               id="name"
-              value={country.name}
+              value={country.name || ""}
               onChange={(e) => handleInputTextChange(e, "name")}
               style={{ width: "100%" }}
               className={errors?.name ? styles.error_input : ""} />
@@ -62,7 +61,6 @@ const CountryEditBlock: React.FC<CountryEditBlockProps> = ({
             chooseLabel="Выбрать флаг"
             maxFileSize={1000000}
             onSelect={(e) => handleFileUploadSelect(e, "flagUrl")} />
-          {errors?.flagUrl && (<small className={styles.error_text}>{errors.flagUrl}</small>)}
         </div>
       </div>
     </Card>
