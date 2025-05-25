@@ -3,19 +3,27 @@ import { format } from "date-fns";
 import { CalendarEvent } from "interfaces/calendar-event";
 import React from "react";
 
-
-export const textTemplate = (rowData: CalendarEvent): React.ReactNode => {
-    if (!rowData || !rowData.text) {
-        return <i>{EMPTY_SHORT_MESSAGE}</i>;
+export const contentTemplate = (rowData: CalendarEvent): React.ReactNode => {
+    if (!rowData || !rowData.content) {
+        return EMPTY_SHORT_MESSAGE;
     }
 
-    return rowData.text;
+    return rowData.content;
 };
 
-export const dateTemplate = (rowData: CalendarEvent): React.ReactNode => {
-    if (!rowData || !rowData.date) {
-        return <i>{EMPTY_SHORT_MESSAGE}</i>;
+export const beginDateTemplate = (rowData: CalendarEvent): React.ReactNode => {
+    if (!rowData || !rowData.beginDate) {
+        return EMPTY_SHORT_MESSAGE;
     }
 
-    return format(rowData.date, "dd.MM.yyyy");
+    return format(rowData.beginDate, "dd.MM.yyyy");
 };
+
+export const endDateTemplate = (rowData: CalendarEvent): React.ReactNode => {
+    if (!rowData || !rowData.endDate) {
+        return EMPTY_SHORT_MESSAGE;
+    }
+
+    return format(rowData.endDate, "dd.MM.yyyy");
+};
+

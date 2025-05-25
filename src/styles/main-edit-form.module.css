@@ -54,13 +54,13 @@
 
 .table_body {
   font-size: 1rem;
-  padding: 10px;
+  padding: 1rem;
   user-select: none;
 }
 
 .table_header {
   font-size: 1rem;
-  padding: 10px;
+  padding: 1rem;
   user-select: none;
 }
 
@@ -68,23 +68,21 @@
   min-width: 2.357rem;
 }
 
-.dialog_header { }
-
 .dialog_footer {
   display: flex;
   justify-content: end;
   align-items: center;
 }
 
-.form {
+.dialog_content {
   padding: 2rem 0 0;
 }
 
-.field {
+.dialog_field {
   margin: 0 0 2.5rem;
-}
+ }
 
-.field label {
+.dialog_field label {
   z-index: 1000;
 }
 

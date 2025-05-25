@@ -11,13 +11,17 @@ export const getEvents = (): CalendarEvent[] => {
 
     return JSON
         .parse(json)
-        .map((event: CalendarEvent) => ({ ...event, date: event.date ? new Date(event.date) : null }));
+        .map((event: CalendarEvent) => ({
+            ...event,
+            beginDate: event.beginDate ? new Date(event.beginDate) : null,
+            endDate: event.endDate ? new Date(event.endDate) : null,
+        } as CalendarEvent));
 };
 
 export const saveEvents = (events: CalendarEvent[]): void => {
-    localStorage.setItem(EVENTS_STORAGE_KEY, JSON.stringify(events));
+    const _events = events.map(event => event.id ? event : { ...event, id: generateEventId() });
+    localStorage.setItem(EVENTS_STORAGE_KEY, JSON.stringify(_events));
 };
-
 export const generateEventId = (): number => {
     const events = getEvents();
     return events.reduce((maxId, event) => Math.max(maxId, event.id), 0) + 1;

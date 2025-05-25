@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as styles from "styles/main-edit-form.module.css";
 import { NewsEditBlockProps } from "./news-edit-block-props";
-import { DataTable } from "primereact/datatable";
+import { DataTable, DataTableRowReorderEvent } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { DEFAULT_NEWS_ITEM, EMPTY_MESSAGE } from "app-consts";
 import { Button } from "primereact/button";
@@ -11,104 +11,137 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Calendar } from "primereact/calendar";
 import { NewsItem } from "interfaces/news-item";
 import { FloatLabel } from "primereact/floatlabel";
-import { generateNewsId } from "services/news-service";
 import { contentTemplate, dateTemplate, titleTemplate } from "./news-edit-block-templates";
+import { nanoid } from "nanoid";
+
+interface LocalNewsItem extends NewsItem {
+    localId: string;
+}
 
 const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeItems }) => {
-
+    const [localItems, setLocalItems] = useState<LocalNewsItem[]>([]);
     const [visibleEditDialog, setVisibleEditDialog] = useState<boolean>(false);
-    const [editableItem, setEditableItem] = useState<NewsItem>(DEFAULT_NEWS_ITEM);
-    const [selectedItem, setSelectedItem] = useState<NewsItem | null>(null);
+    const [editableLocalItem, setEditableLocalItem] = useState<LocalNewsItem>({ ...DEFAULT_NEWS_ITEM, localId: nanoid() });
+    const [selectedLocalItem, setSelectedLocalItem] = useState<LocalNewsItem | null>(null);
+    const [errors, setErrors] = useState<Partial<Record<keyof LocalNewsItem, string>>>({});
+
+    useEffect(() => {
+        const _localItems = items.map(item => ({ ...item, localId: nanoid() }));
+        setLocalItems(_localItems);
+    }, [items]);
 
     const openCreateDialog = (): void => {
-        setEditableItem({ ...DEFAULT_NEWS_ITEM });
+        setErrors({});
+        setEditableLocalItem({ ...DEFAULT_NEWS_ITEM, localId: nanoid() });
         setVisibleEditDialog(true);
     };
 
     const openEditDialog = (): void => {
-        if (!selectedItem) return;
-        setEditableItem({ ...selectedItem });
+        setErrors({});
+        if (!selectedLocalItem) {
+            return;
+        }
+
+        setEditableLocalItem({ ...selectedLocalItem });
         setVisibleEditDialog(true);
     };
 
+    const isValid = (): boolean => {
+        const _errors: Partial<Record<keyof LocalNewsItem, string>> = {};
+
+        if (!editableLocalItem?.title) _errors.title = "Заголовок обязателен к заполнению.";
+        if (!editableLocalItem?.content) _errors.content = "Содержание обязательно к заполнению.";
+        if (!editableLocalItem?.date) _errors.date = "Дата обязательна к заполнению.";
+
+        setErrors(_errors);
+
+        return Object.keys(_errors).length === 0;
+    };
+
     const handleSave = (): void => {
-        let _items: NewsItem[];
-        if (editableItem.id) {
-            _items = items.map(_ => _.id === editableItem.id ? editableItem : _);
-        }
-        else {
-            const newItem = { ...editableItem, id: generateNewsId() };
-            _items = [...items, newItem];
+        if (!isValid()) {
+            return;
         }
 
-        onChangeItems(_items);
+        if (!isValid()) {
+            return;
+        }
+
+        let _localItems: LocalNewsItem[];
+
+        const isLocalItemExists = localItems.some(item => item.localId === editableLocalItem.localId);
+
+        if (isLocalItemExists) {
+            _localItems = localItems.map(localItem => localItem.localId === editableLocalItem.localId ? editableLocalItem : localItem);
+        } else {
+            _localItems = [...localItems, editableLocalItem];
+        }
+
+        setLocalItems(_localItems);
+        onChangeItems(_localItems.map(({ localId, ...rest }) => rest));
         setVisibleEditDialog(false);
     };
 
     const handleDelete = (): void => {
-        if (!selectedItem) return;
-        const _items = items.filter(_ => _.id !== selectedItem.id);
-        onChangeItems(_items);
-        setSelectedItem(null);
+        if (!selectedLocalItem) {
+            return;
+        }
+
+        const _localItems = localItems.filter(item => item.localId !== selectedLocalItem.localId);
+
+        setLocalItems(_localItems);
+        onChangeItems(_localItems.map(({ localId, ...item }) => item));
+        setSelectedLocalItem(null);
     };
 
-    const handleRowReorder = (e: any) => {
-        const items = e.value
-            .map((item: NewsItem, index: number) => ({
-                ...item,
-                order: index + 100
-            }));
+    const handleRowReorder = (event: DataTableRowReorderEvent<LocalNewsItem[]>) => {
+        const _localItems = event.value.map((item, index) => ({ ...item, order: index + 100 }));
 
-        onChangeItems(items);
+        setLocalItems(_localItems);
+        onChangeItems(_localItems.map(({ localId, ...rest }) => rest));
+    };
+
+    const dialogHeaderTemplate = (): React.ReactNode => {
+        if (!editableLocalItem?.id) {
+            return "Добавление новости";
+        }
+
+        return "Редактирование новости"
     };
 
     const dialogFooterTemplate = (): React.ReactNode => (
         <div className={styles.dialog_footer}>
-            <Button icon="pi pi-check" label="Подтвердить" onClick={() => handleSave()} />
+            <Button icon="pi pi-check" label="Подтвердить" onClick={handleSave} />
             <Button icon="pi pi-times" label="Отменить" onClick={() => setVisibleEditDialog(false)} />
         </div>
     );
 
-    const cardHeaderTemplate = (): React.ReactNode => {
-        return (
-            <div className={styles.card_header_container}>
-                <span className={styles.card_header_text}>Новости</span>
-                <div className={styles.card_header_button_container}>
-                    <Button
-                        icon="pi pi-plus"
-                        label="Добавить"
-                        className={styles.card_header_button}
-                        onClick={openCreateDialog} />
-                    <Button
-                        icon="pi pi-pencil"
-                        label="Редактировать"
-                        className={styles.card_header_button}
-                        disabled={!selectedItem}
-                        onClick={openEditDialog} />
-                    <Button
-                        icon="pi pi-trash"
-                        label="Удалить"
-                        className={styles.card_header_button}
-                        disabled={!selectedItem}
-                        onClick={handleDelete} />
-                </div>
+    const tableHeaderTemplate = (): React.ReactNode => (
+        <div className={styles.card_header_container}>
+            <span className={styles.card_header_text}>Новости</span>
+            <div className={styles.card_header_button_container}>
+                <Button icon="pi pi-plus" label="Добавить" className={styles.card_header_button} onClick={openCreateDialog} />
+                <Button icon="pi pi-pencil" label="Редактировать" className={styles.card_header_button} disabled={!selectedLocalItem} onClick={openEditDialog} />
+                <Button icon="pi pi-trash" label="Удалить" className={styles.card_header_button} disabled={!selectedLocalItem} onClick={handleDelete} />
             </div>
-        );
-    }
+        </div>
+    );
 
     return (
         <>
             <DataTable
                 loading={loading}
-                header={cardHeaderTemplate}
-                dataKey="id"
-                value={items}
-                selection={selectedItem}
-                onSelectionChange={(e) => setSelectedItem(e.value as NewsItem | null)}
+                header={tableHeaderTemplate}
+                dataKey="localId"
+                value={localItems}
+                selection={selectedLocalItem}
+                onSelectionChange={(e) => setSelectedLocalItem(e.value as LocalNewsItem | null)}
                 selectionMode="single"
                 stripedRows
                 showGridlines
                 scrollable
+                removableSort
+                sortMode="multiple"
                 emptyMessage={EMPTY_MESSAGE}
                 className={styles.table}
                 paginatorClassName={styles.paginator}
@@ -116,86 +149,86 @@ const NewsEditBlock: React.FC<NewsEditBlockProps> = ({ items, loading, onChangeI
                 reorderableRows
                 onRowReorder={handleRowReorder}>
                 <Column
+                    header="Порядок"
+                    field="order"
+                    rowReorder
                     align="center"
                     alignHeader="center"
-                    header="Порядок"
-                    rowReorder
                     style={{ width: "5%" }} />
                 <Column
-                    align="center"
-                    alignHeader="center"
                     header="Дата"
                     field="date"
                     sortable
-                    body={(rowData) => dateTemplate(rowData)}
-                    bodyClassName={styles.table_body}
-                    headerClassName={styles.table_header}
+                    align="center"
+                    alignHeader="center"
+                    body={dateTemplate}
                     style={{ width: "5%" }} />
                 <Column
-                    align="left"
-                    alignHeader="center"
                     header="Заголовок"
                     field="title"
-                    frozen
                     sortable
-                    body={(rowData) => titleTemplate(rowData)}
-                    bodyClassName={styles.table_body}
-                    headerClassName={styles.table_header}
-                    style={{ width: "20%" }} />
-                <Column
                     align="left"
                     alignHeader="center"
+                    body={titleTemplate}
+                    style={{ width: "20%" }} />
+                <Column
                     header="Описание"
                     field="content"
                     sortable
-                    body={(rowData) => contentTemplate(rowData)}
-                    bodyClassName={styles.table_body}
-                    headerClassName={styles.table_header}
+                    align="left"
+                    alignHeader="center"
+                    body={contentTemplate}
                     style={{ width: "55%" }} />
             </DataTable>
-
             <Dialog
                 style={{ width: "50vw" }}
-                header={editableItem.id ? "Редактирование новости" : "Добавление новости"}
+                header={dialogHeaderTemplate}
                 footer={dialogFooterTemplate}
                 visible={visibleEditDialog}
                 onHide={() => setVisibleEditDialog(false)}>
-                <div className={styles.form}>
-                    <div className={styles.field}>
+                <div className={styles.dialog_content}>
+                    <div className={styles.dialog_field}>
                         <FloatLabel>
                             <label htmlFor="news-item-title">Заголовок</label>
                             <InputText
                                 id="news-item-title"
                                 style={{ width: "100%" }}
-                                value={editableItem.title}
-                                onChange={(e) => setEditableItem({ ...editableItem, title: e.target.value })} />
+                                invalid={!!errors?.title}
+                                value={editableLocalItem.title}
+                                onChange={(e) => setEditableLocalItem({ ...editableLocalItem, title: e.target.value })}
+                            />
                         </FloatLabel>
+                        {errors?.title && <small className="p-error">{errors.title}</small>}
                     </div>
-                    <div className={styles.field}>
+                    <div className={styles.dialog_field}>
                         <FloatLabel>
                             <label htmlFor="news-item-date">Дата</label>
                             <Calendar
                                 id="news-item-date"
                                 style={{ width: "100%" }}
+                                invalid={!!errors?.date}
                                 panelClassName={styles.calendar_panel}
-                                value={editableItem.date}
-                                onChange={(e) => setEditableItem({ ...editableItem, date: e.value as Date | null })}
+                                value={editableLocalItem.date}
+                                onChange={(e) => setEditableLocalItem({ ...editableLocalItem, date: e.value as Date | null })}
                                 dateFormat="dd.mm.yy"
                                 locale="ru"
                                 showIcon
                                 showButtonBar />
                         </FloatLabel>
+                        {errors?.date && <small className="p-error">{errors.date}</small>}
                     </div>
-                    <div className={styles.field}>
+                    <div className={styles.dialog_field}>
                         <FloatLabel>
                             <label htmlFor="news-item-content">Содержание</label>
                             <InputTextarea
                                 id="news-item-content"
                                 style={{ width: "100%" }}
-                                value={editableItem.content}
-                                onChange={(e) => setEditableItem({ ...editableItem, content: e.target.value })}
+                                invalid={!!errors?.content}
+                                value={editableLocalItem.content}
+                                onChange={(e) => setEditableLocalItem({ ...editableLocalItem, content: e.target.value })}
                                 autoResize />
                         </FloatLabel>
+                        {errors?.content && <small className="p-error">{errors.content}</small>}
                     </div>
                 </div>
             </Dialog>

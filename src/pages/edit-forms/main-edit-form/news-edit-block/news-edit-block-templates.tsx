@@ -5,7 +5,7 @@ import React from "react";
 
 export const titleTemplate = (rowData: NewsItem): React.ReactNode => {
     if (!rowData || !rowData.title) {
-        return <i>{EMPTY_SHORT_MESSAGE}</i>;
+        return EMPTY_SHORT_MESSAGE;
     }
 
     return rowData.title;
@@ -13,7 +13,7 @@ export const titleTemplate = (rowData: NewsItem): React.ReactNode => {
 
 export const contentTemplate = (rowData: NewsItem): React.ReactNode => {
     if (!rowData || !rowData.content) {
-        return <i>{EMPTY_SHORT_MESSAGE}</i>;
+        return EMPTY_SHORT_MESSAGE;
     }
 
     return rowData.content;
@@ -21,7 +21,7 @@ export const contentTemplate = (rowData: NewsItem): React.ReactNode => {
 
 export const dateTemplate = (rowData: NewsItem): React.ReactNode => {
     if (!rowData || !rowData.date) {
-        return <i>{EMPTY_SHORT_MESSAGE}</i>;
+        return EMPTY_SHORT_MESSAGE;
     }
 
     return format(rowData.date, "dd.MM.yyyy");

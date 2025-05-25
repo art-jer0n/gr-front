@@ -8,7 +8,8 @@ export const getNews = (): NewsItem[] => {
 }
 
 export const saveNews = (newsList: NewsItem[]): void => {
-    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(newsList))
+    const _newsList = newsList.map(newsItem => newsItem.id ? newsItem : { ...newsItem, id: generateNewsId() });
+    localStorage.setItem(NEWS_STORAGE_KEY, JSON.stringify(_newsList))
 }
 
 export const generateNewsId = (): number => {

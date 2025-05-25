@@ -52,16 +52,7 @@ const MainEditForm: React.FC = () => {
         });
     };
 
-    const handleCancel = () => {
-        // toast.current?.show({
-        //     severity: 'success',
-        //     summary: 'Отмена',
-        //     detail: 'Изменения отменены.',
-        //     life: 3000,
-        // });
-
-        window.location.reload();
-    };
+    const handleCancel = () => window.location.reload();
 
     const handleChangeNewsList = (newsList: NewsItem[]) => {
         setNewsList(newsList);

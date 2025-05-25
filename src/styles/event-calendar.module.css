@@ -28,6 +28,7 @@
   width: 100%;
   height: 100%;
   padding: 10px;
+  overflow: visible; 
 }
 
 .dot {
@@ -41,3 +42,51 @@
   transform: translateX(-50%);
 }
 
+.start,
+.middle,
+.end {
+  height: 2px;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 35px;
+  transform: translateY(-50%);
+}
+
+.start {
+  left: 0%;
+  width: 150%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.middle {
+  left: -50%; 
+  width: 200%;
+}
+
+.end {
+  left: -50%;
+  width:  150%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.monday {
+  left: 0%;
+  width: 100%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.sunday {
+  left: 0%;
+  width: 100%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.calendar :global(.p-calendar .p-datepicker-calendar td),
+.calendar :global(.p-calendar .p-datepicker-calendar td .cell),
+.calendar :global(.p-datepicker table td > span) {
+  overflow: visible !important;
+}
