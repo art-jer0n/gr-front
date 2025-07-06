@@ -23,6 +23,7 @@ const OrganizationList: React.FC = () => {
   const handleFilterChange = (searchText: string) => {
     const lowerText = searchText.toLowerCase();
     const filtered = getOrganizations().filter((organization) =>
+      organization?.name &&
       organization.name.toLowerCase().includes(lowerText)
     );
 

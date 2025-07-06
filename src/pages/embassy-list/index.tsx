@@ -19,7 +19,9 @@ const EmbassyList: React.FC = () => {
   const handleFilterChange = (searchText: string) => {
     const lowerText = searchText.toLowerCase();
     const filtered = getCountries()
-      .filter((country) => country.name.toLowerCase().includes(lowerText));
+      .filter((country) =>
+        country?.name &&
+        country.name.toLowerCase().includes(lowerText));
     setCountries(filtered);
   };
 

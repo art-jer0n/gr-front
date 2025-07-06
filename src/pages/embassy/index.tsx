@@ -31,6 +31,7 @@ const Embassy: React.FC = () => {
     const filtered = getEmbassies().filter(
       (embassy) =>
         Number(id) === embassy.countryId &&
+        embassy?.embassyName &&
         embassy.embassyName.toLowerCase().includes(lowerText)
     );
 
